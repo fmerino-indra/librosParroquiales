@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="20.0" 
+xmlns="http://javafx.com/javafx/21" 
+xmlns:fx="http://javafx.com/fxml/1" 
+fx:controller="org.fmm.librosparroquiales.javafx.controller.BaptismFormController">
+   <children>
+      
+      <HBox alignment="CENTER" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+         <children>
+            <Label fx:id="lblPaso1" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-padding: 5 10 5 10; -fx-background-radius: 15;" text="1. Candidato" font-family="System" font-weight="BOLD"/>
+            <Separator prefWidth="40.0" />
+            <Label fx:id="lblPaso2" style="-fx-background-color: #bdc3c7; -fx-text-fill: white; -fx-padding: 5 10 5 10; -fx-background-radius: 15;" text="2. Padres" font-family="System" font-weight="BOLD"/>
+            <Separator prefWidth="40.0" />
+            <Label fx:id="lblPaso3" style="-fx-background-color: #bdc3c7; -fx-text-fill: white; -fx-padding: 5 10 5 10; -fx-background-radius: 15;" text="3. Padrinos/Abuelos" font-family="System" font-weight="BOLD"/>
+            <Separator prefWidth="40.0" />
+            <Label fx:id="lblPaso4" style="-fx-background-color: #bdc3c7; -fx-text-fill: white; -fx-padding: 5 10 5 10; -fx-background-radius: 15;" text="4. Registro" font-family="System" font-weight="BOLD"/>
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+      </HBox>
+
+      <VBox VBox.vgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" padding="20.0">
+         <children>
+            
+            <VBox fx:id="panelPaso1" spacing="15.0">
+               <children>
+                  <Label text="Paso 1: Datos del Candidato al Bautismo" textFill="#2c3e50"><font><Font name="System Bold" size="16.0" /></font></Label>
+                  <Separator />
+                  <GridPane hgap="15.0" vgap="15.0">
+                    <columnConstraints>
+                      <ColumnConstraints percentWidth="33.0" /><ColumnConstraints percentWidth="33.0" /><ColumnConstraints percentWidth="34.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="30.0" /><RowConstraints minHeight="30.0" />
+                    </rowConstraints>
+                     <children>
+                        <VBox><children><Label text="Nombre *"/><TextField fx:id="txtCanNombre" prefHeight="30.0"/></children></VBox>
+                        <VBox GridPane.columnIndex="1"><children><Label text="Primer Apellido *"/><TextField fx:id="txtCanApellido1" prefHeight="30.0"/></children></VBox>
+                        <VBox GridPane.columnIndex="2"><children><Label text="Segundo Apellido"/><TextField fx:id="txtCanApellido2" prefHeight="30.0"/></children></VBox>
+                        <VBox GridPane.rowIndex="1">
+                            <children>
+                                <Label text="Fecha Nacimiento *"/>
+                                <DatePicker fx:id="dpCanFechaNac" maxWidth="1.7976931348623157E308" prefHeight="30.0"/>
+                            </children>
+                        </VBox>
+                        <VBox GridPane.columnIndex="1" GridPane.rowIndex="1"><children><Label text="Lugar de Nacimiento"/><TextField fx:id="txtCanLugarNac" prefHeight="30.0"/></children></VBox>
+                        <VBox GridPane.columnIndex="2" GridPane.rowIndex="1"><children><Label text="Sexo"/><ComboBox fx:id="cbCanSexo" maxWidth="1.7976931348623157E308" prefHeight="30.0"/></children></VBox>
+                     </children>
+                  </GridPane>
+                  <VBox><children><Label text="Dirección Familiar"/><TextField fx:id="txtCanDireccion" prefHeight="30.0"/></children></VBox>
+               </children>
+            </VBox>
+
+            <VBox fx:id="panelPaso2" spacing="15.0" managed="false" visible="false">
+               <children>
+                  <Label text="Paso 2: Datos de los Padres" textFill="#2c3e50"><font><Font name="System Bold" size="16.0" /></font></Label>
+                  <Separator />
+                  <GridPane hgap="15.0" vgap="15.0">
+                     <columnConstraints>
+                        <ColumnConstraints percentWidth="50.0" /><ColumnConstraints percentWidth="50.0" />
+                     </columnConstraints>
+                     <children>
+                        <VBox><children><Label text="Nombre del Padre"/><TextField fx:id="txtPadreNombre" prefHeight="30.0"/></children></VBox>
+                        <VBox GridPane.columnIndex="1"><children><Label text="Apellidos del Padre"/><TextField fx:id="txtPadreApellidos" prefHeight="30.0"/></children></VBox>
+                        <VBox GridPane.rowIndex="1"><children><Label text="Nombre de la Madre"/><TextField fx:id="txtMadreNombre" prefHeight="30.0"/></children></VBox>
+                        <VBox GridPane.columnIndex="1" GridPane.rowIndex="1"><children><Label text="Apellidos de la Madre"/><TextField fx:id="txtMadreApellidos" prefHeight="30.0"/></children></VBox>
+                     </children>
+                     <rowConstraints><RowConstraints /><RowConstraints /></rowConstraints>
+                  </GridPane>
+                  <VBox prefWidth="200.0"><children><Label text="Filiación / Estado Matrimonial de los Padres"/><TextField fx:id="txtPadresFiliacion" prefHeight="30.0"/></children></VBox>
+               </children>
+            </VBox>
+
+            <VBox fx:id="panelPaso3" spacing="15.0" managed="false" visible="false">
+               <children>
+                  <Label text="Paso 3: Padrinos y Abuelos" textFill="#2c3e50"><font><Font name="System Bold" size="16.0" /></font></Label>
+                  <Separator />
+                  <Label text="Padrinos" textFill="#34495e" font-family="System" font-weight="BOLD" />
+                  <GridPane hgap="15.0" vgap="15.0">
+                     <columnConstraints>
+                        <ColumnConstraints percentWidth="50.0" /><ColumnConstraints percentWidth="50.0" />
+                     </columnConstraints>
+                     <children>
+                        <VBox><children><Label text="Nombre y Apellidos del Padrino"/><TextField fx:id="txtPadrino" prefHeight="30.0"/></children></VBox>
+                        <VBox GridPane.columnIndex="1"><children><Label text="Nombre y Apellidos de la Madrina"/><TextField fx:id="txtMadrina" prefHeight="30.0"/></children></VBox>
+                     </children>
+                     <rowConstraints><RowConstraints /></rowConstraints>
+                  </GridPane>
+                  <Separator />
+                  <Label text="Abuelos" textFill="#34495e" font-family="System" font-weight="BOLD" />
+                  <GridPane hgap="15.0" vgap="15.0">
+                     <columnConstraints>
+                        <ColumnConstraints percentWidth="50.0" /><ColumnConstraints percentWidth="50.0" />
+                     </columnConstraints>
+                     <children>
+                        <VBox><children><Label text="Abuelo Paterno"/><TextField fx:id="txtAbueloPat" prefHeight="30.0"/></children></VBox>
+                        <VBox GridPane.columnIndex="1"><children><Label text="Abuela Paterna"/><TextField fx:id="txtAbuelaPat" prefHeight="30.0"/></children></VBox>
+                        <VBox GridPane.rowIndex="1"><children><Label text="Abuelo Materno"/><TextField fx:id="txtAbueloMat" prefHeight="30.0"/></children></VBox>
+                        <VBox GridPane.columnIndex="1" GridPane.rowIndex="1"><children><Label text="Abuela Materna"/><TextField fx:id="txtAbuelaMat" prefHeight="30.0"/></children></VBox>
+                     </children>
+                     <rowConstraints><RowConstraints /><RowConstraints /></rowConstraints>
+                  </GridPane>
+               </children>
+            </VBox>
+
+            <VBox fx:id="panelPaso4" spacing="15.0" managed="false" visible="false">
+               <children>
+                  <Label text="Paso 4: Datos de la Celebración y Registro" textFill="#2c3e50"><font><Font name="System Bold" size="16.0" /></font></Label>
+                  <Separator />
+                  <GridPane hgap="15.0" vgap="15.0">
+                     <columnConstraints>
+                        <ColumnConstraints percentWidth="50.0" /><ColumnConstraints percentWidth="50.0" />
+                     </columnConstraints>
+                     <children>
+                        <VBox><children><Label text="Fecha de Celebración *"/><DatePicker fx:id="dpFechaCeleb" maxWidth="1.7976931348623157E308" prefHeight="30.0"/></children></VBox>
+                        <VBox GridPane.columnIndex="1"><children><Label text="Ministro Celebrante"/><TextField fx:id="txtMinistro" prefHeight="30.0"/></children></VBox>
+                     </children>
+                     <rowConstraints><RowConstraints /></rowConstraints>
+                  </GridPane>
+                  <GridPane hgap="15.0" vgap="15.0">
+                    <columnConstraints>
+                      <ColumnConstraints percentWidth="33.0" /><ColumnConstraints percentWidth="33.0" /><ColumnConstraints percentWidth="34.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints />
+                    </rowConstraints>
+                     <children>
+                        <VBox><children><Label text="Libro *"/><TextField fx:id="txtRegLibro" prefHeight="30.0"/></children></VBox>
+                        <VBox GridPane.columnIndex="1"><children><Label text="Folio *"/><TextField fx:id="txtRegFolio" prefHeight="30.0"/></children></VBox>
+                        <VBox GridPane.columnIndex="2"><children><Label text="Número Acta *"/><TextField fx:id="txtRegNumero" prefHeight="30.0"/></children></VBox>
+                     </children>
+                  </GridPane>
+                  <VBox VBox.vgrow="ALWAYS"><children><Label text="Observaciones / Notas Marginales Iniciales"/><TextArea fx:id="txtObservaciones" prefHeight="100.0" wrapText="true" /></children></VBox>
+               </children>
+            </VBox>
+
+         </children>
+      </VBox>
+
+      <HBox alignment="CENTER_RIGHT" spacing="15.0">
+         <children>
+            <Button fx:id="btnAnterior" mnemonicParsing="false" onAction="#irAlPasoAnterior" prefHeight="35.0" prefWidth="100.0" style="-fx-cursor: hand;" text="Anterior" />
+            <Button fx:id="btnSiguiente" mnemonicParsing="false" onAction="#irAlPasoSiguiente" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-cursor: hand;" text="Siguiente" font-family="System" font-weight="BOLD" />
+         </children>
+      </HBox>
+      
+   </children>
+</VBox>

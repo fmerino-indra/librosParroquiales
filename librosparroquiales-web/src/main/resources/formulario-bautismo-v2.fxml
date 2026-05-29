@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" 
+	maxHeight="-1.5" 
+	maxWidth="-1.5" 
+	minHeight="-1.5" 
+	minWidth="-1.5" 
+	vbarPolicy="AS_NEEDED"
+	fx:controller="org.fmm.librosparroquiales.javafx.controller.BaptismRequestController" 
+	xmlns="http://javafx.com/javafx/21" 
+	xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox spacing="20.0" style="-fx-background-color: #FAF9F6;">
+         <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </padding>
+         <children>
+            
+            <VBox alignment="CENTER" spacing="5.0" style="-fx-border-color: #003366; -fx-border-width: 0 0 2 0; -fx-padding: 0 0 15 0;">
+               <children>
+                  <Label style="-fx-font-family: 'Georgia'; -fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #003366;" text="PARROQUIA SAN PEDRO REGALADO Y SAN JOSÉ DE CALASANZ" />
+                  <Label style="-fx-font-family: 'Georgia'; -fx-font-size: 18px; -fx-font-style: italic; -fx-text-fill: #555555;" text="Solicitud de Inscripción de Bautismo" />
+               </children>
+            </VBox>
+
+            <TitledPane animated="false" collapsible="false" style="-fx-font-family: 'Arial'; -fx-font-weight: bold; -fx-text-fill: #003366;" text="1. DATOS DEL BAUTIZANDO">
+               <content>
+                  <GridPane hgap="15.0" vgap="12.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="RIGHT" minWidth="10.0" prefWidth="150.0" />
+                      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                        <ColumnConstraints halignment="RIGHT" minWidth="10.0" prefWidth="130.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Nombre:" />
+                        <TextField fx:id="txtNombre" promptText="Nombre del niño/a" GridPane.columnIndex="1" />
+                        
+                        <Label text="Primer Apellido:" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtApellido1" promptText="Primer apellido" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        
+                        <Label text="Segundo Apellido:" GridPane.rowSpan="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtApellido2" promptText="Segundo apellido" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        
+                        <Label text="Fecha Nacimiento:" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="dpFechaNacimiento" maxWidth="1.7976931348623157E308" promptText="dd/mm/aaaa" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        
+                        <Label text="Lugar Nacimiento:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtLugarNacimiento" promptText="Población (Provincia)" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </content>
+            </TitledPane>
+
+            <TitledPane animated="false" collapsible="false" style="-fx-font-family: 'Arial'; -fx-font-weight: bold; -fx-text-fill: #003366;" text="2. DATOS DE LOS PROGENITORES">
+               <content>
+                  <VBox spacing="15.0">
+                     <children>
+                        <GridPane hgap="15.0" vgap="12.0">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="RIGHT" minWidth="10.0" prefWidth="150.0" />
+                              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                              <ColumnConstraints halignment="RIGHT" minWidth="10.0" prefWidth="130.0" />
+                              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Nombre del Padre:" style="-fx-font-weight: bold;" />
+                              <TextField fx:id="txtPadreNombre" promptText="Nombre completo del padre" GridPane.columnIndex="1" />
+                              
+                              <Label text="DNI / NIE Padre:" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtPadreDni" promptText="Documento de identidad" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              
+                              <Label text="Natural de:" GridPane.columnIndex="2" />
+                              <TextField fx:id="txtPadreNatural" promptText="Población (Provincia)" GridPane.columnIndex="3" />
+                           </children>
+                        </GridPane>
+                        
+                        <VBox style="-fx-background-color: #E2E8F0; -fx-max-height: 1; -fx-pref-height: 1;" />
+                        
+                        <GridPane hgap="15.0" vgap="12.0">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="RIGHT" minWidth="10.0" prefWidth="150.0" />
+                              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                              <ColumnConstraints halignment="RIGHT" minWidth="10.0" prefWidth="130.0" />
+                              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Nombre de la Madre:" style="-fx-font-weight: bold;" />
+                              <TextField fx:id="txtMadreNombre" promptText="Nombre completo de la madre" GridPane.columnIndex="1" />
+                              
+                              <Label text="DNI / NIE Madre:" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtMadreDni" promptText="Documento de identidad" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              
+                              <Label text="Natural de:" GridPane.columnIndex="2" />
+                              <TextField fx:id="txtMadreNatural" promptText="Población (Provincia)" GridPane.columnIndex="3" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+               </content>
+            </TitledPane>
+
+            <TitledPane animated="false" collapsible="false" style="-fx-font-family: 'Arial'; -fx-font-weight: bold; -fx-text-fill: #003366;" text="3. ABUELOS">
+               <content>
+                  <GridPane hgap="15.0" vgap="12.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="RIGHT" minWidth="10.0" prefWidth="150.0" />
+                      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                        <ColumnConstraints halignment="RIGHT" minWidth="10.0" prefWidth="130.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Abuelo Paterno:" />
+                        <TextField fx:id="txtAbueloPaterno" promptText="Nombre completo" GridPane.columnIndex="1" />
+                        
+                        <Label text="Abuela Paterna:" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtAbuelaPaterna" promptText="Nombre completo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        
+                        <Label text="Abuelo Materno:" GridPane.columnIndex="2" />
+                        <TextField fx:id="txtAbueloMaterno" promptText="Nombre completo" GridPane.columnIndex="3" />
+                        
+                        <Label text="Abuela Materna:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtAbuelaMaterna" promptText="Nombre completo" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+               </content>
+            </TitledPane>
+
+            <TitledPane animated="false" collapsible="false" style="-fx-font-family: 'Arial'; -fx-font-weight: bold; -fx-text-fill: #003366;" text="4. PADRINOS Y DATOS REGISTRALES">
+               <content>
+                  <GridPane hgap="15.0" vgap="12.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="RIGHT" minWidth="10.0" prefWidth="150.0" />
+                      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                        <ColumnConstraints halignment="RIGHT" minWidth="10.0" prefWidth="130.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Padrino:" />
+                        <TextField fx:id="txtPadrino" promptText="Nombre completo del padrino" GridPane.columnIndex="1" />
+                        
+                        <Label text="Madrina:" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtMadrina" promptText="Nombre completo de la madrina" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        
+                        <Label text="Libro Bautismo:" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtLibro" promptText="Nº Libro" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        
+                        <Label text="Folio / Número:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <HBox spacing="10.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                           <children>
+                              <TextField fx:id="txtFolio" promptText="Folio" HBox.hgrow="ALWAYS" />
+                              <TextField fx:id="txtNumero" promptText="Número" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        
+                        <Label text="Fecha Bautismo:" GridPane.columnIndex="2" />
+                        <DatePicker fx:id="dpFechaBautismo" maxWidth="1.7976931348623157E308" promptText="dd/mm/aaaa" GridPane.columnIndex="3" />
+                        
+                        <Label text="Ministro:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtMinistro" promptText="Sacerdote / Diácono" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+               </content>
+            </TitledPane>
+
+            <TitledPane animated="false" collapsible="false" style="-fx-font-family: 'Arial'; -fx-font-weight: bold; -fx-text-fill: #990000; -fx-box-border: #990000;" text="5. CONTROL DE ACCESO Y AUTORIZACIÓN (RGPD)">
+               <content>
+                  <GridPane hgap="15.0" vgap="12.0">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" minWidth="10.0" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Tipo Autorización*:" style="-fx-text-fill: #990000;" />
+                        <ComboBox fx:id="cmbAutorizacionTipo" maxWidth="1.7976931348623157E308" promptText="-- Seleccione el título de legitimación para emitir --" GridPane.columnIndex="1">
+                           <items>
+                              <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="TITULAR_MAYOR_EDAD" />
+                                 <String fx:value="PADRE_MADRE_TUTOR" />
+                                 <String fx:value="AUTORIZACION_ESCRITA" />
+                                 <String fx:value="PETICION_JUDICIAL" />
+                                 <String fx:value="OTRO" />
+                              </FXCollections>
+                           </items>
+                        </ComboBox>
+                        
+                        <Label text="Notas Auditoría:" GridPane.rowIndex="1" />
+                        <TextArea fx:id="txtAutorizacionNotas" prefHeight="70.0" promptText="Detalles adicionales sobre la documentación presentada o motivos de la expedición..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+               </content>
+            </TitledPane>
+            
+            <HBox alignment="CENTER_RIGHT" spacing="15.0">
+               <children>
+                  <Button fx:id="btnLimpiar" mnemonicParsing="false" prefWidth="100.0" style="-fx-padding: 8 15 8 15;" text="Limpiar" />
+                  <Button fx:id="btnGuardarImprimir" mnemonicParsing="false" prefWidth="180.0" style="-fx-background-color: #003366; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15 8 15;" text="Guardar e Imprimir" />
+               </children>
+            </HBox>
+
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

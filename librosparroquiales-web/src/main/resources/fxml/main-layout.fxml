@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="1000.0" 
+    xmlns="http://javafx.com/javafx/21" 
+    xmlns:fx="http://fxmlapp.com/fxml/1" 
+    fx:controller="org.fmm.librosparroquiales.javafx.controller.MainLayoutController">
+   
+   <top>
+      <VBox style="-fx-background-color: #2c3e50; -co-padding: 15;" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Gestión de Libros Parroquiales" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+         </padding>
+      </VBox>
+   </top>
+   
+   <left>
+      <VBox prefWidth="220.0" spacing="10.0" style="-fx-background-color: #34495e;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#mostrarDashboard" prefHeight="45.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-cursor: hand;" text="🔎 Buscador / Tablero">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnNuevoBautismo" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#mostrarNuevoBautismo" prefHeight="45.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-cursor: hand;" text="➕ Nuevo Bautismo">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnCertificados" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#mostrarCertificados" prefHeight="45.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-cursor: hand;" text="📄 Certificados">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </VBox>
+   </left>
+   
+   <center>
+      <StackPane fx:id="contentArea" style="-fx-background-color: #ecf0f1;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </StackPane>
+   </center>
+</BorderPane>
