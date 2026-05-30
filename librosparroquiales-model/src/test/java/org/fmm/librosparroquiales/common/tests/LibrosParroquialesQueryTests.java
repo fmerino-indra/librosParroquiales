@@ -20,7 +20,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -71,7 +70,7 @@ class LibrosParroquialesQueryTests {
 		int pagina = 0;
 		int tamanoPagina=20;
 		Page<BaptismRequest> baptismRequestPage = null;
-		Pageable ordenacionYPagina = PageRequest.of(pagina, tamanoPagina, Sort.by("br.appointment").descending());
+		Pageable ordenacionYPagina = PageRequest.of(pagina, tamanoPagina);
 		baptismRequestPage=baptismRequestRepository.listBaptismRequestByCriterioAndDate(criterio, from, null,ordenacionYPagina);
 		assertNotNull(baptismRequestPage);
 		assertTrue(baptismRequestPage.getTotalElements()>0);

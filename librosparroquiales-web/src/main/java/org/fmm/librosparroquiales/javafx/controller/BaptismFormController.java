@@ -3,11 +3,13 @@ package org.fmm.librosparroquiales.javafx.controller;
 import org.fmm.librosparroquiales.common.model.Address;
 import org.fmm.librosparroquiales.common.model.BaptismRequest;
 import org.fmm.librosparroquiales.common.model.BaptismalCandidate;
+import org.fmm.librosparroquiales.common.model.Person;
 import org.fmm.librosparroquiales.common.service.BaptismRequestService;
 import org.fmm.librosparroquiales.javafx.Launcher;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -16,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class BaptismFormController {
 
@@ -23,6 +26,7 @@ public class BaptismFormController {
     @FXML private Label lblPaso1, lblPaso2, lblPaso3, lblPaso4;
     @FXML private VBox panelPaso1, panelPaso2, panelPaso3, panelPaso4;
     @FXML private Button btnAnterior, btnSiguiente;
+    @FXML private Button btnBuscarPadre, btnLimpiarPadre, btnBuscarMadre, btnLimpiarMadre;
 
     // --- CAMPOS PASO 1 (CANDIDATO) ---
     @FXML private TextField txtCanNombre, txtCanApellido1, txtCanApellido2, txtCanLugarNac;
@@ -93,8 +97,14 @@ public class BaptismFormController {
     private boolean validarPaso(int paso) {
         // Validaciones básicas para evitar nulos molestos
         if (paso == 1) {
-            if (txtCanNombre.getText().trim().isEmpty() || txtCanApellido1.getText().trim().isEmpty() || dpCanFechaNac.getValue() == null) {
-                mostrarAlerta("Campos obligatorios", "Por favor, rellene el Nombre, Primer Apellido y Fecha de Nacimiento.");
+            if (txtCanNombre.getText().trim().isEmpty() 
+            		|| txtCanApellido1.getText().trim().isEmpty() 
+            		|| dpCanFechaNac.getValue() == null
+            		|| txtDirCalle.getText().trim().isEmpty()
+            		|| txtDirNumero.getText().trim().isEmpty()
+            		|| txtDirPoblacion.getText().trim().isEmpty()
+            		) {
+                mostrarAlerta("Campos obligatorios", "Por favor, rellene el Nombre, Primer Apellido, Fecha de Nacimiento. Calle, número y población");
                 return false;
             }
         }
@@ -229,5 +239,120 @@ public class BaptismFormController {
 	    direccion.setCity(txtDirPoblacion.getText().trim());
 	    direccion.setProvince(txtDirProvincia.getText().trim());
 	    direccion.setCountry(txtDirPais.getText().trim());	    
-	}	
+	}
+	/*
+	@FXML
+	public void buscarPadreModal(ActionEvent event) {
+		
+	}
+	@FXML
+	public void desvincularPadre(ActionEvent event) {
+		
+	}
+	@FXML
+	public void buscarMadreModal(ActionEvent event) {
+		
+	}
+	@FXML
+	public void desvincularMadre(ActionEvent event) {
+		
+	}
+	*/
+    // --- REFERENCIAS INTERNAS DEL MODELO ---
+    private Person padreAsociado = null;
+    private Person madreAsociado = null;
+
+    @FXML
+    void buscarPadreModal(ActionEvent event) {
+        Person seleccionada = abrirModalSelector();
+        if (seleccionada != null) {
+            this.padreAsociado = seleccionada;
+            
+            // Inyectamos datos y bloqueamos campos para que no se altere el registro existente
+            txtPadreNombre.setText(seleccionada.getName());
+            txtPadreApellidos.setText(seleccionada.getSurname1() + " " + seleccionada.getSurname2());
+            
+            txtPadreNombre.setEditable(false);
+            txtPadreApellidos.setEditable(false);
+            
+            // Ajustamos botonera
+            btnBuscarPadre.setDisable(true);
+            btnLimpiarPadre.setDisable(false);
+        }
+    }
+
+    @FXML
+    void desvincularPadre(ActionEvent event) {
+        this.padreAsociado = null;
+        
+        txtPadreNombre.clear();
+        txtPadreApellidos.clear();
+        
+        txtPadreNombre.setEditable(true);
+        txtPadreApellidos.setEditable(true);
+        
+        btnBuscarPadre.setDisable(false);
+        btnLimpiarPadre.setDisable(true);
+    }
+
+    @FXML
+    void buscarMadreModal(ActionEvent event) {
+        Person seleccionada = abrirModalSelector();
+        if (seleccionada != null) {
+            this.madreAsociado = seleccionada;
+            
+            txtMadreNombre.setText(seleccionada.getName());
+            txtMadreApellidos.setText(seleccionada.getSurname1() + " " + seleccionada.getSurname2());
+            
+            txtMadreNombre.setEditable(false);
+            txtMadreApellidos.setEditable(false);
+            
+            btnBuscarMadre.setDisable(true);
+            btnLimpiarMadre.setDisable(false);
+        }
+    }
+
+    @FXML
+    void desvincularMadre(ActionEvent event) {
+        this.madreAsociado = null;
+        
+        txtMadreNombre.clear();
+        txtMadreApellidos.clear();
+        
+        txtMadreNombre.setEditable(true);
+        txtMadreApellidos.setEditable(true);
+        
+        btnBuscarMadre.setDisable(false);
+        btnLimpiarMadre.setDisable(true);
+    }
+
+    /**
+     * Método genérico y reutilizable para levantar la ventana modal de selección.
+     */
+    private Person abrirModalSelector() {
+        try {
+            java.net.URL url = getClass().getResource("/fxml/person-selector.fxml");
+            FXMLLoader loader = new FXMLLoader(url);
+            javafx.scene.Parent root = loader.load();
+
+            // Configurar el escenario del diálogo (Modal Stage)
+            Stage modalStage = new Stage();
+            modalStage.setTitle("Seleccionar Persona");
+            modalStage.initModality(javafx.stage.Modality.APPLICATION_MODAL); // Bloquea la ventana de atrás
+            modalStage.initOwner(btnBuscarPadre.getScene().getWindow());       // Asocia la ventana padre
+            modalStage.setScene(new javafx.scene.Scene(root));
+
+            // Mostramos y esperamos a que el usuario cierre la ventana
+            modalStage.showAndWait();
+
+            // Recuperamos el controlador del modal para extraer el resultado obtenido
+            PersonSelectorController modalController = loader.getController();
+            return modalController.getPersonaSeleccionada();
+
+        } catch (Exception e) {
+            System.err.println("Error al abrir el modal selector de personas.");
+            e.printStackTrace();
+            return null;
+        }
+    }	
 }

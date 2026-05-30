@@ -59,13 +59,9 @@
                         <VBox GridPane.columnIndex="2" GridPane.rowIndex="1"><children><Label text="Sexo"/><ComboBox fx:id="cbCanSexo" maxWidth="1.7976931348623157E308" prefHeight="30.0"/></children></VBox>
                      </children>
                   </GridPane>
-<!-- 
-                  <VBox><children><Label text="Dirección Familiar"/><TextField fx:id="txtCanDireccion" prefHeight="30.0"/></children></VBox>
- -->
                   <Label style="-fx-font-weight: bold;" text="Dirección del Candidato" textFill="#34495e" />
                   <VBox spacing="15.0">
                      <children>
-                        
                         <HBox spacing="15.0" alignment="BOTTOM_LEFT">
                            <children>
                               <VBox HBox.hgrow="ALWAYS" prefWidth="500.0">
@@ -132,76 +128,57 @@
 
                      </children>
                   </VBox>              
-<!--                   
-                  <GridPane hgap="15.0" vgap="15.0">
-                     <columnConstraints>
-                        <ColumnConstraints percentWidth="50.0" /> <ColumnConstraints percentWidth="16.0" /> <ColumnConstraints percentWidth="17.0" /> <ColumnConstraints percentWidth="17.0" /> </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="30.0" /> <RowConstraints minHeight="30.0" /> </rowConstraints>
-                     
-                     <children>
-                        <VBox GridPane.rowIndex="0" GridPane.columnIndex="0">
-                           <children>
-                              <Label text="Calle / Avda / Pza *" />
-                              <TextField fx:id="txtDirCalle" prefHeight="30.0" />
-                           </children>
-                        </VBox>
-                        
-                        <VBox GridPane.rowIndex="0" GridPane.columnIndex="1">
-                           <children>
-                              <Label text="Número *" />
-                              <TextField fx:id="txtDirNumero" prefHeight="30.0" />
-                           </children>
-                        </VBox>
-                        
-                        <VBox GridPane.rowIndex="0" GridPane.columnIndex="2">
-                           <children>
-                              <Label text="Piso" />
-                              <TextField fx:id="txtDirPiso" prefHeight="30.0" />
-                           </children>
-                        </VBox>
-                        
-                        <VBox GridPane.rowIndex="0" GridPane.columnIndex="3">
-                           <children>
-                              <Label text="Letra / Puerta" />
-                              <TextField fx:id="txtDirLetra" prefHeight="30.0" />
-                           </children>
-                        </VBox>
-
-
-                        <VBox GridPane.rowIndex="1" GridPane.columnIndex="0">
-                           <children>
-                              <Label text="Población *" />
-                              <TextField fx:id="txtDirPoblacion" prefHeight="30.0" />
-                           </children>
-                        </VBox>
-                        
-                        <VBox GridPane.rowIndex="1" GridPane.columnIndex="1">
-                           <children>
-                              <Label text="Cód. Postal *" />
-                              <TextField fx:id="txtDirCodigoPostal" prefHeight="30.0" />
-                           </children>
-                        </VBox>
-                        
-                        <VBox GridPane.rowIndex="1" GridPane.columnIndex="2">
-                           <children>
-                              <Label text="Provincia *" />
-                              <TextField fx:id="txtDirProvincia" prefHeight="30.0" />
-                           </children>
-                        </VBox>
-                        
-                        <VBox GridPane.rowIndex="1" GridPane.columnIndex="3">
-                           <children>
-                              <Label text="País *" />
-                              <TextField fx:id="txtDirPais" prefHeight="30.0" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </GridPane>
- -->                  
                </children>
             </VBox>
+            <VBox fx:id="panelPaso2" managed="false" spacing="15.0" visible="false">
+               <children>
+                  <Label text="Paso 2: Datos de los Padres" textFill="#2c3e50"><font><Font name="System Bold" size="16.0" /></font></Label>
+                  <Separator />
+                  
+                  <HBox spacing="15.0" alignment="BOTTOM_LEFT">
+                     <children>
+                        <VBox HBox.hgrow="ALWAYS" prefWidth="250.0">
+                           <children><Label text="Nombre del Padre *"/><TextField fx:id="txtPadreNombre" prefHeight="30.0"/></children>
+                        </VBox>
+                        <VBox HBox.hgrow="ALWAYS" prefWidth="350.0">
+                           <children><Label text="Apellidos del Padre *"/><TextField fx:id="txtPadreApellidos" prefHeight="30.0"/></children>
+                        </VBox>
+                        <HBox spacing="10.0" prefHeight="30.0" alignment="BOTTOM_LEFT">
+                           <children>
+								<Button fx:id="btnBuscarPadre" mnemonicParsing="false" onAction="#buscarPadreModal" prefHeight="30.0" style="-fx-cursor: hand;">
+								   <graphic>
+								      <javafx.scene.shape.SVGPath content="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#555555" scaleX="0.8" scaleY="0.8"/>
+								   </graphic>
+								</Button>                           
+                              <Button fx:id="btnLimpiarPadre" disable="true" mnemonicParsing="false" 
+                              onAction="#desvincularPadre" text="&#x274C;" prefHeight="30.0" style="-fx-cursor: hand; -fx-text-fill: red;"/>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
 
+                  <HBox spacing="15.0" alignment="BOTTOM_LEFT">
+                     <children>
+                        <VBox HBox.hgrow="ALWAYS" prefWidth="250.0">
+                           <children><Label text="Nombre de la Madre *"/><TextField fx:id="txtMadreNombre" prefHeight="30.0"/></children>
+                        </VBox>
+                        <VBox HBox.hgrow="ALWAYS" prefWidth="350.0">
+                           <children><Label text="Apellidos de la Madre *"/><TextField fx:id="txtMadreApellidos" prefHeight="30.0"/></children>
+                        </VBox>
+                        <HBox spacing="10.0" prefHeight="30.0" alignment="BOTTOM_LEFT">
+                           <children>
+                              <Button fx:id="btnBuscarMadre" mnemonicParsing="false" onAction="#buscarMadreModal" text="🔍 Buscar" prefHeight="30.0" style="-fx-cursor: hand;"/>
+                              <Button fx:id="btnLimpiarMadre" disable="true" mnemonicParsing="false" 
+                              onAction="#desvincularMadre" text="❌" prefHeight="30.0" style="-fx-cursor: hand; -fx-text-fill: red;"/>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+
+                  <VBox prefWidth="200.0"><children><Label text="Filiación / Estado Matrimonial de los Padres"/><TextField fx:id="txtPadresFiliacion" prefHeight="30.0"/></children></VBox>
+               </children>
+            </VBox>
+<!--             
             <VBox fx:id="panelPaso2" managed="false" spacing="15.0" visible="false">
                <children>
                   <Label text="Paso 2: Datos de los Padres" textFill="#2c3e50"><font><Font name="System Bold" size="16.0" /></font></Label>
@@ -221,7 +198,7 @@
                   <VBox prefWidth="200.0"><children><Label text="Filiación / Estado Matrimonial de los Padres"/><TextField fx:id="txtPadresFiliacion" prefHeight="30.0"/></children></VBox>
                </children>
             </VBox>
-
+ -->
             <VBox fx:id="panelPaso3" managed="false" spacing="15.0" visible="false">
                <children>
                   <Label text="Paso 3: Padrinos y Abuelos" textFill="#2c3e50"><font><Font name="System Bold" size="16.0" /></font></Label>
