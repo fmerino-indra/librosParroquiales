@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+
+
+<VBox spacing="15.0" 
+    xmlns="http://javafx.com/javafx/" 
+    xmlns:fx="http://javafx.com/fxml/1" 
+    fx:controller="org.fmm.librosparroquiales.javafx.controller.AddressController">
+   <children>
+      <HBox spacing="15.0" alignment="BOTTOM_LEFT">
+         <children>
+            <VBox HBox.hgrow="ALWAYS" prefWidth="500.0">
+               <children>
+                  <Label text="Calle / Avda / Pza *" />
+                  <TextField fx:id="txtDirCalle" prefHeight="30.0" />
+               </children>
+            </VBox>
+            
+            <VBox HBox.hgrow="ALWAYS" prefWidth="160.0">
+               <children>
+                  <Label text="Número *" />
+                  <TextField fx:id="txtDirNumero" prefHeight="30.0" />
+               </children>
+            </VBox>
+            
+            <VBox HBox.hgrow="ALWAYS" prefWidth="170.0">
+               <children>
+                  <Label text="Piso" />
+                  <TextField fx:id="txtDirPiso" prefHeight="30.0" />
+               </children>
+            </VBox>
+            
+            <VBox HBox.hgrow="ALWAYS" prefWidth="170.0">
+               <children>
+                  <Label text="Letra / Puerta" />
+                  <TextField fx:id="txtDirLetra" prefHeight="30.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+
+      <HBox spacing="15.0" alignment="BOTTOM_LEFT">
+         <children>
+            <VBox HBox.hgrow="ALWAYS" prefWidth="160.0">
+               <children>
+                  <Label text="Cód. Postal *" />
+                  <TextField fx:id="txtDirCodigoPostal" prefHeight="30.0" />
+               </children>
+            </VBox>
+            
+            <VBox HBox.hgrow="ALWAYS" prefWidth="250.0">
+               <children>
+                  <Label text="Población *" />
+                  <TextField fx:id="txtDirPoblacion" prefHeight="30.0" />
+               </children>
+            </VBox>
+            
+            <VBox HBox.hgrow="ALWAYS" prefWidth="250.0">
+               <children>
+                  <Label text="Provincia *" />
+                  <TextField fx:id="txtDirProvincia" prefHeight="30.0" />
+               </children>
+            </VBox>
+            
+            <VBox HBox.hgrow="ALWAYS" prefWidth="170.0">
+               <children>
+                  <Label text="País *" />
+                  <TextField fx:id="txtDirPais" prefHeight="30.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+
+   </children>
+</VBox>              

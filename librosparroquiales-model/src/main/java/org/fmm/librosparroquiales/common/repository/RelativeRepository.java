@@ -1,5 +1,7 @@
 package org.fmm.librosparroquiales.common.repository;
 
+import java.util.Optional;
+
 import org.fmm.librosparroquiales.common.model.Relative;
 import org.fmm.librosparroquiales.common.model.baptism.Father;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,6 +22,14 @@ public interface RelativeRepository extends JpaRepository<Relative, Integer> {
             + " WHERE f.id = :id"
             + " AND f.relativeType = 'FATHER'")
     Father findFullFatherById(@Param("id") Integer id);
+
+    @Query("SELECT f FROM Relative f"
+            + " LEFT JOIN FETCH f.personData p"
+            + " LEFT JOIN FETCH p.mobileNumbers mn"
+            + " LEFT JOIN FETCH p.emailAccounts ea"
+            + " WHERE p.id = :personId"
+            + " AND f.relativeType = 'FATHER'")
+    Optional<Father> findFullFatherByPersonId(@Param("personId") Integer id);
 
     @Query("SELECT f FROM Relative f"
             + " LEFT JOIN FETCH f.personData p"

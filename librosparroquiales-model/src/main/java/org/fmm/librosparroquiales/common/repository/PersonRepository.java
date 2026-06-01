@@ -3,6 +3,7 @@ package org.fmm.librosparroquiales.common.repository;
 import java.util.List;
 
 import org.fmm.librosparroquiales.common.model.Person;
+import org.fmm.librosparroquiales.common.util.enums.GenderEnum;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -34,4 +35,7 @@ public interface PersonRepository extends JpaRepository<Person, Integer> {
             + " ORDER BY p.surname1, p.name"
     		)
     Page<Person> findPersonByNameAndSurname1(@Param("name") String name, @Param("surname1") String surname1, Pageable pageable);
+
+    List<Person> findByNameContainingIgnoreCaseOrSurname1ContainingIgnoreCaseOrSurname2ContainingIgnoreCase(@Param("name") String name, @Param("surname1") String surname1, @Param("surname2") String surname2);
+    List<Person> findByNameContainingIgnoreCaseAndGenderOrSurname1ContainingIgnoreCaseAndGenderOrSurname2ContainingIgnoreCaseAndGender(@Param("name") String name, @Param("gender1") GenderEnum gender1, @Param("surname1") String surname1, @Param("gender2") GenderEnum gender2, @Param("surname2") String surname2, @Param("gender3") GenderEnum gender3);    
 }

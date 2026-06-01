@@ -4,8 +4,10 @@ import org.fmm.librosparroquiales.common.model.Address;
 import org.fmm.librosparroquiales.common.model.BaptismRequest;
 import org.fmm.librosparroquiales.common.model.BaptismalCandidate;
 import org.fmm.librosparroquiales.common.model.Person;
+import org.fmm.librosparroquiales.common.model.baptism.Father;
 import org.fmm.librosparroquiales.common.service.BaptismRequestService;
-import org.fmm.librosparroquiales.javafx.Launcher;
+import org.fmm.librosparroquiales.common.service.PersonService;
+import org.fmm.librosparroquiales.common.util.enums.GenderEnum;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class BaptismFormController {
+public class BaptismFormController extends AbstractFxController {
 
     // --- ELEMENTOS DE NAVEGACIÓN ---
     @FXML private Label lblPaso1, lblPaso2, lblPaso3, lblPaso4;
@@ -56,13 +58,17 @@ public class BaptismFormController {
 
     private int pasoActual = 1;
     private BaptismRequestService baptismRequestService;
+    private PersonService personService;
+    
     private BaptismRequest baptismRequest = null;
     
     @FXML
     public void initialize() {
         // Recuperamos el servicio de creación de tu proyecto de manera tradicional
-        this.baptismRequestService = Launcher.springContext.getBean(BaptismRequestService.class);
-
+//        this.baptismRequestService = Launcher.springContext.getBean(BaptismRequestService.class);
+    	this.baptismRequestService = this.getBaptismRequestServiceBean();
+    	personService = this.getPersonServiceBean();
+    	
         // Inicializar combos
         cbCanSexo.getItems().addAll("Varón", "Mujer");
         cbCanSexo.setValue("Varón");
@@ -259,14 +265,21 @@ public class BaptismFormController {
 	}
 	*/
     // --- REFERENCIAS INTERNAS DEL MODELO ---
-    private Person padreAsociado = null;
+    private Father padreAsociado = null;
     private Person madreAsociado = null;
 
     @FXML
     void buscarPadreModal(ActionEvent event) {
-        Person seleccionada = abrirModalSelector();
+        Person seleccionada = abrirPersonModalSelector(GenderEnum.M);
         if (seleccionada != null) {
-            this.padreAsociado = seleccionada;
+        	this.padreAsociado=personService.findFatherByPerson(seleccionada);
+        	
+        	// Al no tener id no existe en bbdd
+        	if (padreAsociado.getId() == null) {
+        		padreAsociado = openParentModalSelector(padreAsociado);
+        		// Hay que guardar el padre.
+        	}
+            //this.padreAsociado = seleccionada;
             
             // Inyectamos datos y bloqueamos campos para que no se altere el registro existente
             txtPadreNombre.setText(seleccionada.getName());
@@ -297,7 +310,7 @@ public class BaptismFormController {
 
     @FXML
     void buscarMadreModal(ActionEvent event) {
-        Person seleccionada = abrirModalSelector();
+        Person seleccionada = abrirPersonModalSelector(GenderEnum.F);
         if (seleccionada != null) {
             this.madreAsociado = seleccionada;
             
@@ -329,24 +342,52 @@ public class BaptismFormController {
     /**
      * Método genérico y reutilizable para levantar la ventana modal de selección.
      */
-    private Person abrirModalSelector() {
+    private Person abrirPersonModalSelector(GenderEnum gender) {
         try {
             java.net.URL url = getClass().getResource("/fxml/person-selector.fxml");
             FXMLLoader loader = new FXMLLoader(url);
             javafx.scene.Parent root = loader.load();
-
+            final VBox vBox = (VBox)root;
+            
             // Configurar el escenario del diálogo (Modal Stage)
             Stage modalStage = new Stage();
             modalStage.setTitle("Seleccionar Persona");
             modalStage.initModality(javafx.stage.Modality.APPLICATION_MODAL); // Bloquea la ventana de atrás
             modalStage.initOwner(btnBuscarPadre.getScene().getWindow());       // Asocia la ventana padre
-            modalStage.setScene(new javafx.scene.Scene(root));
-
+            
+            double width = vBox.getPrefWidth();
+            double height = vBox.getPrefHeight();
+            
+            modalStage.setScene(new javafx.scene.Scene(root, width, height));
+            modalStage.setWidth(width);
+            modalStage.setHeight(height);
+            modalStage.setMinWidth(width);
+            modalStage.setMinHeight(height);
+            
+            // Recuperamos el controlador del modal para extraer el resultado obtenido
+            PersonSelectorController modalController = loader.getController();
+            modalController.setGender(gender);
+            
+         // EL CHIVATO: Imprime las medidas reales en la consola de Eclipse en cuanto se abre
+            modalStage.setOnShown(event -> {
+                System.out.println("=== DIAGNÓSTICO DE DIMENSIONES MODAL ===");
+                System.out.println("Ancho del Stage (Ventana): " + modalStage.getWidth());
+                System.out.println("Alto del Stage (Ventana): " + modalStage.getHeight());
+                System.out.println("Ancho de la Scene (Contenido): " + modalStage.getScene().getWidth());
+                System.out.println("Alto de la Scene (Contenido): " + modalStage.getScene().getHeight());
+                System.out.println("Ancho pref del VBox raíz: " + vBox.getPrefWidth());
+                System.out.println("========================================");
+                
+                modalStage.setWidth(width);
+                modalStage.setHeight(height);
+                vBox.setPrefSize(width, height);
+                root.requestLayout();
+                
+            });            
+            
             // Mostramos y esperamos a que el usuario cierre la ventana
             modalStage.showAndWait();
 
-            // Recuperamos el controlador del modal para extraer el resultado obtenido
-            PersonSelectorController modalController = loader.getController();
             return modalController.getPersonaSeleccionada();
 
         } catch (Exception e) {
@@ -354,5 +395,66 @@ public class BaptismFormController {
             e.printStackTrace();
             return null;
         }
+    }
+    
+    /**
+     * Método genérico y reutilizable para levantar la ventana modal de formulario de Father.
+     */
+    private Father openParentModalSelector(Father father) {
+        try {
+            java.net.URL url = getClass().getResource("/fxml/parent-form.fxml");
+            FXMLLoader loader = new FXMLLoader(url);
+            javafx.scene.Parent root = loader.load();
+            final VBox vBox = (VBox)root;
+            
+            // Configurar el escenario del diálogo (Modal Stage)
+            Stage modalStage = new Stage();
+            modalStage.setTitle("Datos adicionales Padre");
+            modalStage.initModality(javafx.stage.Modality.APPLICATION_MODAL); // Bloquea la ventana de atrás
+            modalStage.initOwner(btnBuscarPadre.getScene().getWindow());       // Asocia la ventana padre
+            
+            double width = vBox.getPrefWidth();
+            double height = vBox.getPrefHeight();
+            
+            modalStage.setScene(new javafx.scene.Scene(root, width, height));
+            modalStage.setWidth(width);
+            modalStage.setHeight(height);
+            modalStage.setMinWidth(width);
+            modalStage.setMinHeight(height);
+            
+            // Recuperamos el controlador del modal para extraer el resultado obtenido
+            // [FMMP] Hay que ver si ya está creado
+            ParentFormController parentModalController = loader.getController();
+            parentModalController.setFather(father);
+            
+            
+         // EL CHIVATO: Imprime las medidas reales en la consola de Eclipse en cuanto se abre
+            modalStage.setOnShown(event -> {
+                System.out.println("=== DIAGNÓSTICO DE DIMENSIONES MODAL ===");
+                System.out.println("Ancho del Stage (Ventana): " + modalStage.getWidth());
+                System.out.println("Alto del Stage (Ventana): " + modalStage.getHeight());
+                System.out.println("Ancho de la Scene (Contenido): " + modalStage.getScene().getWidth());
+                System.out.println("Alto de la Scene (Contenido): " + modalStage.getScene().getHeight());
+                System.out.println("Ancho pref del VBox raíz: " + vBox.getPrefWidth());
+                System.out.println("========================================");
+                
+                modalStage.setWidth(width);
+                modalStage.setHeight(height);
+                vBox.setPrefSize(width, height);
+                root.requestLayout();
+                
+            });            
+            
+            // Mostramos y esperamos a que el usuario cierre la ventana
+            modalStage.showAndWait();
+
+            return parentModalController.getFather();
+
+        } catch (Exception e) {
+            System.err.println("Error al abrir el modal formulario de Parents.");
+            e.printStackTrace();
+            return null;
+        }
     }	
+    
 }

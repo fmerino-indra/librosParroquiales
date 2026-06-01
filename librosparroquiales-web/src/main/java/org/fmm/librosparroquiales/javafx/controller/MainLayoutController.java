@@ -2,8 +2,6 @@ package org.fmm.librosparroquiales.javafx.controller;
 
 import java.io.IOException;
 
-import org.fmm.librosparroquiales.common.model.BaptismRequest;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

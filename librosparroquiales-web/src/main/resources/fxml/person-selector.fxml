@@ -10,7 +10,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="500.0" spacing="15.0" 
+<VBox prefHeight="600.0" prefWidth="800.0" spacing="15.0"
+    minWidth="800.0" minHeight="600.0" 
     xmlns="http://javafx.com/javafx/21" 
     xmlns:fx="http://javafx.com/fxml/1" 
     fx:controller="org.fmm.librosparroquiales.javafx.controller.PersonSelectorController">
@@ -29,7 +30,8 @@
       <TableView fx:id="tablaPersonas" VBox.vgrow="ALWAYS" style="-fx-cursor: hand;">
         <columns>
           <TableColumn fx:id="colNombre" prefWidth="150.0" text="Nombre" />
-          <TableColumn fx:id="colApellidos" prefWidth="200.0" text="Apellidos" />
+          <TableColumn fx:id="colApellido1" prefWidth="200.0" text="Apellido1" />
+          <TableColumn fx:id="colApellido2" prefWidth="200.0" text="Apellido2" />
           <TableColumn fx:id="colFecNac" prefWidth="110.0" text="Fec. Nacimiento" />
         </columns>
       </TableView>
