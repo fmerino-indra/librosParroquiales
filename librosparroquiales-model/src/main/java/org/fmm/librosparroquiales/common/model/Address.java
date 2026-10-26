@@ -122,4 +122,12 @@ public class Address implements Serializable {
 		this.streetNumber = streetNumber;
 	}
 
+	public String getFullAddress1() {
+		return String.format("%s, %s %s %s", streetName, streetNumber, floor, door);
+	}
+	
+	public String getFullAddress2() {
+		return String.format("%s-%s (%s, %s)", postalCode, city, province, country);
+	}
+
 }

@@ -2,13 +2,14 @@ package org.fmm.librosparroquiales.common.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import org.fmm.librosparroquiales.common.model.baptism.Father;
 import org.fmm.librosparroquiales.common.model.baptism.GrandFather;
 import org.fmm.librosparroquiales.common.model.baptism.GrandMother;
 import org.fmm.librosparroquiales.common.model.baptism.Mother;
+import org.hibernate.annotations.ColumnDefault;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,7 +32,7 @@ public class BaptismRequest implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne //(cascade = CascadeType.ALL)
 	@JoinColumn(name="candidate")
 	private BaptismalCandidate candidate;
 	
@@ -39,8 +40,20 @@ public class BaptismRequest implements Serializable {
 	private LocalDate appointment;
 	
 	@Column
+	private LocalDate requestDate;
+	
+	@Column
 	private boolean celebrated;
 
+	@Column
+	private Integer book;
+	
+	@Column
+	private Integer sheet;
+	
+	@Column
+	private Integer number;
+	
 	@ManyToOne
 	@JoinColumn(name="father_id")
 	private Father father;
@@ -75,8 +88,24 @@ public class BaptismRequest implements Serializable {
 	@JoinColumn(name="godmother_id")
 	private Person godMother;
 
+	@ManyToOne
+	@JoinColumn(name="minister_id")
+	private Person minister;
+	
+	@Column
+	// Es de hibernate
+	@ColumnDefault("true")
+	private boolean commonAddress;
+	
 	public BaptismRequest() {
 		super();
+		this.candidate = new BaptismalCandidate();
+		this.requestDate=LocalDate.now();
+	}
+
+	public BaptismRequest(BaptismalCandidate candidate) {
+		super();
+		this.candidate = candidate;
 	}
 	
 	public Integer getId() {
@@ -173,5 +202,53 @@ public class BaptismRequest implements Serializable {
 	
 	public String getParentNames() {
 		return String.format("%s - %s", this.father.getPersonData().getName(), this.mother.getPersonData().getName());
+	}
+
+	public LocalDate getRequestDate() {
+		return requestDate;
+	}
+
+	public void setRequestDate(LocalDate requestDate) {
+		this.requestDate = requestDate;
+	}
+
+	public Person getMinister() {
+		return minister;
+	}
+
+	public void setMinister(Person minister) {
+		this.minister = minister;
+	}
+
+	public boolean isCommonAddress() {
+		return commonAddress;
+	}
+
+	public void setCommonAddress(boolean commonAddress) {
+		this.commonAddress = commonAddress;
+	}
+
+	public Integer getBook() {
+		return book;
+	}
+
+	public void setBook(Integer book) {
+		this.book = book;
+	}
+
+	public Integer getSheet() {
+		return sheet;
+	}
+
+	public void setSheet(Integer sheet) {
+		this.sheet = sheet;
+	}
+
+	public Integer getNumber() {
+		return number;
+	}
+
+	public void setNumber(Integer number) {
+		this.number = number;
 	}
 }

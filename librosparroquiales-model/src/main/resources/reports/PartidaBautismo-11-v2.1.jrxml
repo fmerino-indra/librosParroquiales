@@ -1,0 +1,626 @@
+<!-- Created with Jaspersoft Studio version 7.0.6.final using JasperReports Library version 7.0.6-5d2a603fdc6b3db8f842a83383e594f41891534d  -->
+<jasperReport name="PartidaBautismo" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d3ffbb03-c45f-4dd3-a714-64c080faa76e">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="XMLBautismo"/>
+	<property name="net.sf.jasperreports.text.date.pattern" value="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"/>
+	<parameter name="BaptismRequest" class="org.fmm.librosparroquiales.common.model.BaptismRequest"/>
+	<parameter name="ParishPriest" class="org.fmm.librosparroquiales.common.model.ParishPriest"/>
+	<parameter name="Parish" class="org.fmm.librosparroquiales.common.model.Parish"/>
+	<field name="candidate" class="org.fmm.librosparroquiales.common.model.BaptismalCandidate"/>
+	<field name="father" class="org.fmm.librosparroquiales.common.model.baptism.Father"/>
+	<field name="mother" class="org.fmm.librosparroquiales.common.model.baptism.Mother"/>
+	<field name="fatherGrandFather" class="org.fmm.librosparroquiales.common.model.baptism.GrandFather"/>
+	<field name="fatherGrandMother" class="org.fmm.librosparroquiales.common.model.baptism.GrandMother"/>
+	<field name="motherGrandFather" class="org.fmm.librosparroquiales.common.model.baptism.GrandFather"/>
+	<field name="motherGrandMother" class="org.fmm.librosparroquiales.common.model.baptism.GrandMother"/>
+	<field name="godFather" class="org.fmm.librosparroquiales.common.model.Person"/>
+	<field name="godMother" class="org.fmm.librosparroquiales.common.model.Person"/>
+	<field name="book" class="java.lang.Integer"/>
+	<field name="sheet" class="java.lang.Integer"/>
+	<field name="number" class="java.lang.Integer"/>
+	<background splitType="Stretch"/>
+	<pageHeader/>
+	<detail>
+		<band height="768" splitType="Stretch">
+			<element kind="textField" uuid="d2484854-4b78-4ffe-ac9b-4813d4df8cf9" stretchType="NoStretch" x="257" y="213" width="20" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" pattern="dd/MM/yyyy" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$F{candidate}.getBirthday().format( java.time.format.DateTimeFormatter.ofPattern("dd"))]]></expression>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="f696f01a-9650-4e42-aa0b-70af658aaef4" stretchType="ElementGroupHeight" x="190" y="229" width="364" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" printWhenDetailOverflows="true" bold="true">
+				<paragraph lineSpacing="1_1_2" lineSpacingSize="1.0" firstLineIndent="0"/>
+				<expression><![CDATA[$F{candidate}.getBirthLocation()]]></expression>
+				<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+			</element>
+			<element kind="rectangle" uuid="46116b80-7ba6-476f-9ef5-79e2cc573f0d" x="368" y="650" width="187" height="117">
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineWidth="0.15"/>
+			</element>
+			<element kind="rectangle" uuid="b22ab129-ec7e-422f-8164-297ddbfa0157" x="181" y="650" width="187" height="117">
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineWidth="0.15"/>
+			</element>
+			<element kind="textField" uuid="7fea2038-da80-43fa-b880-aa592b41f403" stretchType="ElementGroupHeight" x="190" y="165" width="364" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" printWhenDetailOverflows="true" bold="true">
+				<paragraph firstLineIndent="35"/>
+				<expression><![CDATA[$F{candidate}.getPersonData().getFullName()]]></expression>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="e8fd600e-508b-4f9f-88d7-ad4e9dc2e4c3" x="54" y="153" width="119" height="16" fontName="LM Roman 12" fontSize="10.0" bold="true">
+				<expression><![CDATA[$P{Parish}.getAddress().getCity()]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="9d7c6986-a9ba-4742-8c3c-468a8e83e6a3" x="54" y="169" width="119" height="16" fontName="LM Roman 12" fontSize="10.0" bold="true">
+				<expression><![CDATA["Diócesis Parroquia"]]></expression>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="009bd4d5-bca0-4191-8d1b-52b37486308a" x="54" y="185" width="119" height="16" fontName="LM Roman 12" fontSize="10.0" bold="true">
+				<expression><![CDATA[$P{Parish}.getAddress().getProvince()]]></expression>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="44bfba95-f58a-488c-890f-9daec57f953b" x="190" y="133" width="364" height="32" fontName="LM Roman 12" fontSize="11.0" bold="false" hTextAlign="Justified">
+				<paragraph lineSpacing="AtLeast" lineSpacingSize="0.0" firstLineIndent="0"/>
+				<text><![CDATA[Que según consta en el acta reseñada al margen, correspondiente al Libro de Bautismos,]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="65bd0d96-1420-4b0b-b313-ee404ad3e79a" x="50" y="114" width="120" height="16" fontName="LM Roman 12" fontSize="10.0" bold="true">
+				<expression><![CDATA[$P{Parish}.getName().length()>18?$P{Parish}.getName().substring(0,18): $P{Parish}.getName()]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="4ed0025f-2c95-45b7-9bd2-63324f46741d" x="180" y="10" width="1" height="758">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="8ed89308-f466-42b6-a153-888d4d1ef516" x="0" y="114" width="48" height="16" fontName="LM Roman 12" fontSize="10.0">
+				<text><![CDATA[Parroquia]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="6d6338ba-8997-4d0b-8a74-a1de7114fe14" x="50" y="129" width="120" height="1">
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="06df3748-edca-4b21-882b-fa5c11456a69" x="0" y="145" width="170" height="1">
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="textField" uuid="ba72480d-630a-4c13-bb9f-a885f7209aee" x="0" y="130" width="170" height="16" fontName="LM Roman 12" fontSize="10.0" bold="true">
+				<expression><![CDATA[$P{Parish}.getName().length() > 18?$P{Parish}.getName().substring(18):""]]></expression>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="68321e4a-8238-418d-b337-4b390d51d071" x="0" y="153" width="54" height="16" fontName="LM Roman 12" fontSize="10.0">
+				<text><![CDATA[Población]]></text>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="fb597b37-fc48-40bd-b17b-31a7a83e845d" x="54" y="168" width="119" height="1">
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="staticText" uuid="2284b6fb-ea69-4808-be45-51a409cd2aae" x="0" y="169" width="54" height="16" fontName="LM Roman 12" fontSize="10.0">
+				<text><![CDATA[Diócesis]]></text>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="5d368595-faff-45ce-bc95-06070094f40b" x="54" y="184" width="119" height="1">
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="staticText" uuid="97431f61-00bf-449b-af0a-043cd1ea1e72" x="0" y="185" width="54" height="16" fontName="LM Roman 12" fontSize="10.0">
+				<text><![CDATA[Provincia]]></text>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="262d6a27-2da4-499e-ae85-c8b2bcd193f6" x="54" y="200" width="119" height="1">
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="textField" uuid="50197166-69fb-4766-8a5c-510baee0469f" stretchType="ElementGroupHeight" x="231" y="51" width="323" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$P{ParishPriest}.getPersonData().getFullName()]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="33db6f79-db2e-4f3f-bcc1-7f2ae50f7c52" x="190" y="51" width="30" height="16" fontName="LM Roman 12" fontSize="11.0">
+				<text><![CDATA[Don]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="96654f50-a1bb-452b-a699-9b5b26fb11b7" x="231" y="66" width="323" height="1">
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="staticText" uuid="0fe4c7b9-f491-4fbb-909c-0f9943ec476d" x="0" y="253" width="48" height="16" fontName="LM Roman 12" fontSize="10.0">
+				<text><![CDATA[Libro]]></text>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="a51d87da-054d-49da-b364-5cae52181aae" x="50" y="253" width="60" height="16" fontName="LM Roman 12" fontSize="10.0" bold="true">
+				<expression><![CDATA[$F{book}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="fd8a1951-4bd2-41b2-8a13-3f7b2f997e24" x="50" y="268" width="60" height="1">
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="staticText" uuid="4749a520-d3ef-478f-aab5-81630db18da4" x="0" y="269" width="48" height="16" fontName="LM Roman 12" fontSize="10.0">
+				<text><![CDATA[Folio]]></text>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="f733c937-d008-4e04-b454-623e1d86106d" x="50" y="269" width="60" height="16" fontName="LM Roman 12" fontSize="10.0" bold="true">
+				<expression><![CDATA[$F{sheet}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="0a284e44-722a-46a1-a597-563e990addb1" x="50" y="284" width="60" height="1">
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="staticText" uuid="d8797b23-731d-49c5-94fd-c9680c70933e" x="0" y="285" width="48" height="16" fontName="LM Roman 12" fontSize="10.0">
+				<text><![CDATA[Número]]></text>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="ee3135e1-188f-4a72-aa17-d4a1620859a9" x="50" y="285" width="60" height="16" fontName="LM Roman 12" fontSize="10.0" bold="true">
+				<expression><![CDATA[$F{number}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="cfe0d535-a919-4f5c-8719-1343076db489" x="50" y="300" width="60" height="1">
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="staticText" uuid="ce8d84f9-b7ae-4d2e-a390-1d404b29a04d" x="1" y="380" width="167" height="16" fontName="LM Roman 12" fontSize="10.0" bold="true" hTextAlign="Center">
+				<text><![CDATA[Notas Marginales]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="75f453f4-5da9-47c0-8af1-ab4627edb94f" x="0" y="406" width="168" height="260" fontName="LM Roman 12" fontSize="10.0" textAdjust="StretchHeight" bold="false" underline="false" hTextAlign="Left">
+				<paragraph lineSpacing="1_1_2"/>
+				<expression><![CDATA["Concatenar todas las líneas de observación y lineaN"]]></expression>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="f71c9310-5f05-44a8-ae25-99b4c2658dbc" x="0" y="420" width="168" height="1">
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="49a4ec0d-4020-4534-a974-2c7e0236bc9e" x="0" y="440" width="168" height="1">
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="340ec4b0-c077-438a-b0ce-9a7b5dab251c" x="0" y="460" width="168" height="1">
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="5635c71e-6174-4881-b070-ff7db3a7eb53" x="0" y="480" width="168" height="1">
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="29b4e086-709b-4b90-8f7f-e9f86b069423" x="0" y="500" width="168" height="1">
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="a1885907-08f1-4647-9c45-508fd4ea0449" x="0" y="520" width="168" height="1">
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="0f7aa934-9d25-4e73-9966-ab7ad21744b8" x="0" y="540" width="168" height="1">
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="1ed1c9e8-83b7-4f97-8749-53726d33cb8f" x="0" y="560" width="168" height="1">
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="ae720740-1505-4809-ae7b-03fbf872d176" x="0" y="580" width="168" height="1">
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="6142e02f-f250-4961-b754-18ae5109e545" x="0" y="660" width="168" height="1">
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="9a0d9dde-4e3c-4e48-9cbe-1e7f48c075e0" x="0" y="640" width="168" height="1">
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="29d5aa88-6b2c-48c0-b38b-8a62dec3dfba" x="0" y="620" width="168" height="1">
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="c1dffae6-7a7e-4697-86ea-d195b60d7074" x="0" y="600" width="168" height="1">
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="staticText" uuid="d1957908-f4e8-49d6-8d6a-1a47b503fe97" x="190" y="110" width="364" height="23" fontName="LM Roman 12" fontSize="14.0" bold="true" hTextAlign="Center">
+				<paragraph lineSpacingSize="0.0"/>
+				<text><![CDATA[CERTIFICA]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="9350e29b-4a5f-450f-a3f8-4dde95d31d18" x="190" y="165" width="30" height="16" fontName="LM Roman 12" fontSize="11.0">
+				<text><![CDATA[Don]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="1815dd25-e3b1-4678-b9c1-1b45c1001691" x="220" y="180" width="330" height="1">
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="staticText" uuid="fd8caff7-65d1-485d-959a-082889b04ace" x="190" y="181" width="180" height="16" fontName="LM Roman 12" fontSize="11.0" bold="false">
+				<paragraph firstLineIndent="0"/>
+				<text><![CDATA[fue bautizado/a en la parroquia de]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+			<element kind="staticText" uuid="e9ae5008-651d-45f2-8799-9e8354f9f9e0" x="190" y="213" width="64" height="16" fontName="LM Roman 12" fontSize="11.0" bold="false">
+				<paragraph firstLineIndent="0"/>
+				<text><![CDATA[Nació el día]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+			<element kind="line" uuid="75450981-79a5-4e29-ae35-c5f6fc481a28" x="257" y="228" width="20" height="1">
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="textField" uuid="e12b9b18-8e71-40d6-a12b-5c4c0ebb6944" stretchType="ElementGroupHeight" x="244" y="287" width="310" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$P{BaptismRequest}.getFather().getPersonData().getFullName()]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+			<element kind="staticText" uuid="42316fec-2cf1-47a3-9af0-09e98f4f2452" x="190" y="287" width="54" height="16" fontName="LM Roman 12" fontSize="11.0">
+				<text><![CDATA[Don]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+			<element kind="staticText" uuid="c401204c-4aae-4e7d-bc0d-ad6c62fcd131" x="190" y="271" width="54" height="16" fontName="LM Roman 12" fontSize="11.0" bold="true">
+				<text><![CDATA[Padres]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<box padding="0"/>
+			</element>
+			<element kind="textField" uuid="41f95d2d-d789-4002-b3f4-443646b829d3" stretchType="ElementGroupHeight" x="244" y="303" width="310" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$F{father}.getAddress().getFullAddress2()]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="61f3e7a6-2abd-435f-9534-126750677fe9" x="190" y="303" width="54" height="16" fontName="LM Roman 12" fontSize="11.0">
+				<text><![CDATA[Natural de]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="ba3df3f7-3688-49df-be24-fdfb7a420e10" x="190" y="335" width="54" height="16" fontName="LM Roman 12" fontSize="11.0">
+				<text><![CDATA[Natural de]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="184a1d38-5c98-42e5-97e7-eda992175508" stretchType="ElementGroupHeight" x="244" y="319" width="310" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$F{mother}.getPersonData().getFullName()]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="52f87eeb-8bd3-4cb2-8bf2-a32b284b7705" stretchType="ElementGroupHeight" x="244" y="335" width="310" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$F{mother}.getAddress().getFullAddress2()]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="9c76cfb8-299f-4cec-af67-a28292dda27b" x="190" y="319" width="54" height="16" fontName="LM Roman 12" fontSize="11.0">
+				<text><![CDATA[y Dª]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="2ef18566-822c-44e5-8484-60389133047f" x="244" y="302" width="310" height="1">
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="ac780ed3-48bb-4584-b5e0-89f7f3e5aeaf" x="244" y="318" width="310" height="1">
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="5175eb28-3182-4b67-ba27-9e1dbdfd7828" x="244" y="334" width="310" height="1">
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="e04338f5-4211-4ee9-97fd-987c49c971da" x="244" y="350" width="310" height="1">
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="staticText" uuid="5f60a3a5-654a-4c97-b38a-51dc1cea00ac" x="190" y="67" width="190" height="16" fontName="LM Roman 12" fontSize="11.0">
+				<text><![CDATA[Encargado del Archivo parroquial de:]]></text>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="b19a3c8d-bf42-4dcf-9419-57f8f1e2d966" stretchType="ElementGroupHeight" x="330" y="632" width="224" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" printWhenDetailOverflows="true" bold="true" hTextAlign="Right">
+				<expression><![CDATA[$P{Parish}.getAddress().getCity() + ", " + new java.text.SimpleDateFormat("dd 'de' MMMM 'de' yyyy").format(new java.util.Date())]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="b5951c2a-8906-40fd-b1a0-6501b20b43af" x="435" y="751" width="120" height="15" fontName="LM Roman 12" fontSize="8.0">
+				<text><![CDATA[(Firma del encargado del Archivo)]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			</element>
+			<element kind="textField" uuid="295c52f0-7288-4e99-83e1-4e7ba5fb7edb" stretchType="NoStretch" x="372" y="181" width="182" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" pattern="dd/MM/yyyy" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$P{Parish}.getName().length()>24?$P{Parish}.getName().substring(0,24): $P{Parish}.getName()]]></expression>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="d2b3b5ba-9647-4067-a282-f78bf08950d7" x="222" y="728" width="120" height="38" fontName="LM Roman 12" fontSize="8.0" hTextAlign="Center" vTextAlign="Bottom">
+				<text><![CDATA[Vº Bº
+El Vicario General]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			</element>
+			<element kind="staticText" uuid="7d1e1f76-9f51-4558-8ca1-baa2be3b8517" x="283" y="213" width="12" height="16" fontName="LM Roman 12" fontSize="11.0" bold="false">
+				<paragraph firstLineIndent="0"/>
+				<text><![CDATA[de]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+			<element kind="textField" uuid="ddf1f828-6242-4969-befd-9c146cc2f642" stretchType="NoStretch" x="298" y="213" width="55" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" pattern="dd/MM/yyyy" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$F{candidate}.getBirthday().format( java.time.format.DateTimeFormatter.ofPattern("MMMM"))]]></expression>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="764d61da-1037-48a5-8275-dfa050a7f8e4" x="298" y="228" width="55" height="1">
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="staticText" uuid="32cad48c-0326-4cf5-83e0-4fc61ea6c5d4" x="355" y="213" width="12" height="16" fontName="LM Roman 12" fontSize="11.0" bold="false">
+				<paragraph firstLineIndent="0"/>
+				<text><![CDATA[de]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+			<element kind="textField" uuid="df2e783c-826d-447f-aa0c-3c0f66a26d96" stretchType="NoStretch" x="370" y="213" width="40" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" pattern="dd/MM/yyyy" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$F{candidate}.getBirthday().format( java.time.format.DateTimeFormatter.ofPattern("yyyy"))]]></expression>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="8a99aa1f-8663-4383-8133-22285fe97733" x="370" y="228" width="40" height="1">
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="staticText" uuid="7f500f66-f89f-4a3c-bffc-1d75cad13e7d" x="412" y="213" width="88" height="16" fontName="LM Roman 12" fontSize="11.0" bold="false">
+				<paragraph firstLineIndent="0"/>
+				<text><![CDATA[siendo natural de]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+			<element kind="textField" uuid="c2ad5587-5bef-456b-be5f-f42c7498011d" stretchType="NoStretch" x="190" y="197" width="185" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" pattern="dd/MM/yyyy" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$P{Parish}.getName().length() > 24?$P{Parish}.getName().substring(24):""]]></expression>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="ba3afe81-ff0b-4397-ab43-892d4f9af1a3" x="190" y="212" width="185" height="1">
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="fde8a521-13c7-4642-8512-f567a96990b9" x="372" y="196" width="182" height="1">
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="df347ea2-ead1-49a2-a7ce-fbb18ccd3661" x="190" y="244" width="364" height="1">
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="textField" uuid="eb64cb46-2084-495c-b792-6d5fa85bf430" stretchType="NoStretch" x="190" y="83" width="364" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" pattern="dd/MM/yyyy" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$P{ParishPriest}.getParish().getName()]]></expression>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="76ff5acb-47c9-45ef-9dc6-b10b98761960" x="190" y="98" width="364" height="1">
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="staticText" uuid="d45dcd65-b5ad-45d1-adb0-436eee39e488" x="190" y="600" width="27" height="16" fontName="LM Roman 12" fontSize="11.0">
+				<text><![CDATA[y Dª]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="4cf997e6-8da9-4785-a822-4d2218b6e6de" stretchType="ElementGroupHeight" x="217" y="581" width="337" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$F{godFather}.getFullName()]]></expression>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="3dd87e2d-6aa6-4210-a894-fb9d4016b5b6" stretchType="ElementGroupHeight" x="217" y="600" width="337" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$F{godMother}.getFullName()]]></expression>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="65ba4fd8-71e0-47d0-bf2a-69620a970499" x="190" y="581" width="27" height="16" fontName="LM Roman 12" fontSize="11.0">
+				<text><![CDATA[D.]]></text>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="74f32529-810b-44f1-bcdb-d5a90366e83f" x="217" y="596" width="337" height="1">
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="2c2a2cf8-6b41-4c18-bcb7-23bcd15f2ee0" x="217" y="615" width="337" height="1">
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="textField" uuid="e318d4d4-e4bc-4fa0-bd4f-89b6a4fdd4fb" stretchType="ElementGroupHeight" x="244" y="394" width="310" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$F{fatherGrandFather}.getFullName()]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+			<element kind="staticText" uuid="dae7f164-9e69-4b99-9215-089254e5a536" x="190" y="394" width="54" height="16" fontName="LM Roman 12" fontSize="11.0">
+				<text><![CDATA[Don]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+			<element kind="staticText" uuid="abd8ceb1-75d9-4164-8175-c1cabb0c2cff" x="190" y="378" width="144" height="16" fontName="LM Roman 12" fontSize="11.0" bold="true">
+				<text><![CDATA[Abuelos paternos]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="f798d3a5-8d86-4664-8cff-3a4c6a0d2108" stretchType="ElementGroupHeight" x="244" y="410" width="310" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$F{fatherGrandFather}.getBirthLocation()]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="defb7715-16e6-4221-a262-d5d7e99aecd0" x="190" y="410" width="54" height="16" fontName="LM Roman 12" fontSize="11.0">
+				<text><![CDATA[Natural de]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="f0ca08cc-2911-4d12-b972-4294aa3d97da" x="190" y="442" width="54" height="16" fontName="LM Roman 12" fontSize="11.0">
+				<text><![CDATA[Natural de]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="afc37e65-1dcb-443b-a44b-23fb39c7b062" stretchType="ElementGroupHeight" x="244" y="426" width="310" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$F{fatherGrandMother}.getFullName()]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="c61cd13c-05e1-458d-8056-1a56f2f6dffb" stretchType="ElementGroupHeight" x="244" y="442" width="310" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$F{fatherGrandMother}.getBirthLocation()]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="39e844e9-75ab-4347-ada7-c977ae168afc" x="190" y="426" width="54" height="16" fontName="LM Roman 12" fontSize="11.0">
+				<text><![CDATA[y Dª]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="db4872f2-164d-470c-8850-d0794142287f" x="244" y="409" width="310" height="1">
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="7b29215e-6dea-4a71-8626-6d8e0e2f5ccc" x="244" y="425" width="310" height="1">
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="8b4cb8df-faca-47fa-b133-ba4aed496613" x="244" y="441" width="310" height="1">
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="e3d1d43d-94a6-4591-936d-fa5bdf1e3ed7" x="244" y="457" width="310" height="1">
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="textField" uuid="4f7cd79d-15a8-41bb-be09-21375dbc9e9b" stretchType="ElementGroupHeight" x="244" y="476" width="310" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$F{motherGrandFather}.getFullName()]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			</element>
+			<element kind="staticText" uuid="9cdd3735-8a00-4100-beb3-547dbafcb9d0" x="190" y="476" width="54" height="16" fontName="LM Roman 12" fontSize="11.0">
+				<text><![CDATA[Don]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="a6fde1c7-af61-4ef2-b269-4a64e6980417" x="190" y="460" width="144" height="16" fontName="LM Roman 12" fontSize="11.0" bold="true">
+				<text><![CDATA[Abuelos maternos]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="a59ef8cf-03c4-46c0-a464-89e98e9b8e93" stretchType="ElementGroupHeight" x="244" y="492" width="310" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$F{motherGrandFather}.getBirthLocation()]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="c5b0a6e4-8e46-4a91-bfe2-546585c72b4d" x="190" y="492" width="54" height="16" fontName="LM Roman 12" fontSize="11.0">
+				<text><![CDATA[Natural de]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="37bf0aad-1ec9-4280-ab00-0f508fea7d24" x="190" y="524" width="54" height="16" fontName="LM Roman 12" fontSize="11.0">
+				<text><![CDATA[Natural de]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="8bdd0261-5039-4162-ac91-b432e5c6f5f5" stretchType="ElementGroupHeight" x="244" y="508" width="310" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$F{motherGrandMother}.getFullName()]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="b0cbef5e-8255-4329-939e-13d7d51897b5" stretchType="ElementGroupHeight" x="244" y="524" width="310" height="16" markup="none" fontName="LM Roman 12" fontSize="11.0" printWhenDetailOverflows="true" bold="true">
+				<expression><![CDATA[$F{motherGrandMother}.getBirthLocation()]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="23a423c7-c2f9-4ce4-8eba-c3520d875182" x="190" y="508" width="54" height="16" fontName="LM Roman 12" fontSize="11.0">
+				<text><![CDATA[y Dª]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="e85815ae-73fa-4249-a5b8-65f2ad889e7a" x="244" y="491" width="310" height="1">
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="7be843a2-643c-4e92-8800-44b49411d9de" x="244" y="507" width="310" height="1">
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="4a8aacb0-2cc3-4141-9c10-0182cca6bc1a" x="244" y="523" width="310" height="1">
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="line" uuid="ae6f7f78-c3f2-4a38-8af0-86eb8fe738c8" x="244" y="539" width="310" height="1">
+				<pen lineStyle="Dotted"/>
+			</element>
+			<element kind="staticText" uuid="c9ad4853-64b6-4d41-9a18-1578915403bf" x="184" y="653" width="84" height="19" fontName="LM Roman 12" fontSize="8.0" hTextAlign="Left">
+				<text><![CDATA[(Para otras Diócesis)]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			</element>
+			<element kind="staticText" uuid="117866a5-6a93-4392-bc4f-0f402d863d18" x="190" y="565" width="66" height="16" fontName="LM Roman 12" fontSize="11.0" bold="true">
+				<text><![CDATA[Padrinos]]></text>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="43d19b85-70be-4768-bf5b-6b72115a1ca7" mode="Transparent" x="181" y="10" width="370" height="39" forecolor="#49371B" fontName="LM Roman 12" fontSize="20.0" bold="true" hTextAlign="Center">
+				<paragraph lineSpacing="Single" lineSpacingSize="1.0"/>
+				<text><![CDATA[Certificación de Partida de Bautismo]]></text>
+			</element>
+			<element kind="image" uuid="7cb8d2f7-70e0-4a30-b479-3218699eed3a" x="21" y="0" width="120" height="94">
+				<expression><![CDATA[this.getClass().getResourceAsStream("/imgs/logo-san-pedro-original.png")]]></expression>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+		</band>
+	</detail>
+	<pageFooter height="34">
+		<element kind="textField" uuid="1957c038-4ed1-4c96-8bca-54fc9545f45a" x="5" y="10" width="539" height="19" fontName="LM Roman 12" fontSize="11.0" hTextAlign="Center">
+			<expression><![CDATA[$P{Parish}.getAddress().getStreetName() + ", " + $P{Parish}.getAddress().getStreetNumber()  + " - " + $P{Parish}.getTfno() + " - " + $P{Parish}.getAddress().getPostalCode() + " - " + $P{Parish}.getAddress().getCity()]]></expression>
+		</element>
+		<element kind="line" uuid="87c35010-78af-47f8-8095-58c46f0345ab" x="5" y="6" width="555" height="1">
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<pen lineStyle="Solid"/>
+		</element>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import java.lang.String?>
+
+<GridPane hgap="15.0" vgap="15.0" 
+  xmlns="http://javafx.com/javafx/21" 
+  xmlns:fx="http://javafx.com/fxml/1" 
+  fx:controller="org.fmm.librosparroquiales.javafx.controller.person.PersonFormFragmentController">
+  <columnConstraints>
+    <ColumnConstraints percentWidth="33.0" /><ColumnConstraints percentWidth="33.0" /><ColumnConstraints percentWidth="34.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="30.0" /><RowConstraints minHeight="30.0" />
+  </rowConstraints>
+   <children>
+      <VBox><children><Label text="Nombre *"/><TextField fx:id="txtName" prefHeight="30.0"/></children></VBox>
+      <VBox GridPane.columnIndex="1"><children><Label text="Primer Apellido *"/><TextField fx:id="txtSurname1" prefHeight="30.0"/></children></VBox>
+      <VBox GridPane.columnIndex="2"><children><Label text="Segundo Apellido"/><TextField fx:id="txtSurname2" prefHeight="30.0"/></children></VBox>
+      <VBox GridPane.rowIndex="1"><children><Label text="Fecha Nacimiento *"/><DatePicker fx:id="dpBirthdate" maxWidth="1.7976931348623157E308" prefHeight="30.0"/></children></VBox>
+      <VBox GridPane.columnIndex="2" GridPane.rowIndex="1"><fx:include fx:id="genderFragment" source="/fxml/gender/gender-fragment.fxml" /></VBox>
+   </children>
+</GridPane>

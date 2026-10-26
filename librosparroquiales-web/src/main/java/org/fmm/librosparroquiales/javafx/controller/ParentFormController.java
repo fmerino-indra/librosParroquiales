@@ -1,22 +1,25 @@
 package org.fmm.librosparroquiales.javafx.controller;
 
+import org.fmm.librosparroquiales.common.model.Person;
 import org.fmm.librosparroquiales.common.model.Relative;
-import org.fmm.librosparroquiales.common.util.enums.GenderEnum;
+import org.fmm.librosparroquiales.common.util.enums.BaptismRelativeEnum;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class ParentFormController extends AbstractFxModalController {
 
+	@FXML private Label lblTituloFormulario;
+    @FXML private Label lblNombrePersonaCompleto;
     @FXML private TextField txtNif;
     @FXML private TextField txtBirthLocation;
     
     // El motor de JavaFX inyecta el controlador del fragmento de forma automática
-    @FXML private AddressController addressFragmentController;
+//    @FXML private AddressController addressFragmentController;
 
     private Relative relative;
-    private GenderEnum gender;
     private boolean guardado = false;
 
     @FXML
@@ -29,15 +32,31 @@ public class ParentFormController extends AbstractFxModalController {
     /**
      * Método para pasarle el objeto Father inicializado por tu servicio antes de mostrar la pantalla
      */
-    public void setRelative(Relative relative, GenderEnum gender) {
+    public void setRelative(Relative relative) {
         this.relative = relative;
-        this.gender = gender;
+//        this.gender = gender;
         // Si por algún caso ya tuviera datos previos, los cargaríamos en los campos
         txtNif.setText(relative.getNif());
         txtBirthLocation.setText(relative.getBirthLocation());
-        addressFragmentController.setAddress(relative.getAddress());
+//        addressFragmentController.setAddress(relative.getAddress());
     }
 
+    public void loadPersonAndRole(Person person, BaptismRelativeEnum role) { //, GenderEnum gender) {
+    	// 1. Configuramos visualmente el título de la pantalla según el caso
+    	lblTituloFormulario.setText(RelativeFactory.getFormTextLabel(role));
+    	
+    	// 2. Mostramos el literal de la persona seleccionada arriba en modo lectura
+        String nombreCompleto = person.getName() + " " + person.getSurname1() + 
+                                (person.getSurname2() != null ? " " + person.getSurname2() : "");
+        lblNombrePersonaCompleto.setText(nombreCompleto);
+
+        // 3. LA CLAVE: Instanciamos el subtipo específico correspondiente dentro de nuestra variable polimórfica
+        this.relative = RelativeFactory.newRelative(role);
+
+        // 4. Vinculamos de inmediato los datos de identidad a la entidad del Progenitor
+        this.relative.setPersonData(person);    	
+    	
+    }
     @FXML
     void guardar(ActionEvent event) {
         if (relative != null) {
@@ -46,7 +65,7 @@ public class ParentFormController extends AbstractFxModalController {
             relative.setBirthLocation(txtBirthLocation.getText().trim());
             
             // Le pedimos la dirección directamente al controlador del fragmento
-            relative.setAddress(addressFragmentController.getAddress());
+//            relative.setAddress(addressFragmentController.getAddress());
             
             this.guardado = true;
             cerrarModal(txtBirthLocation.getScene());
@@ -56,6 +75,7 @@ public class ParentFormController extends AbstractFxModalController {
     @FXML
     void cancelar(ActionEvent event) {
         this.guardado = false;
+        this.relative = null;
         cerrarModal(txtBirthLocation.getScene());
     }
 

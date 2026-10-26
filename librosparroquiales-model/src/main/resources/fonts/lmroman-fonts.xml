@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fontFamilies>
+
+    <fontFamily name="LM Roman 12">
+        <normal>fonts/lmroman12-regular.otf</normal>
+        <bold>fonts/lmroman12-bold.otf</bold>
+        <italic>fonts/lmroman12-italic.otf</italic>
+        <boldItalic>fonts/lmroman12-bold.otf</boldItalic>
+        <pdfEncoding>Identity-H</pdfEncoding>
+        <pdfEmbedded>true</pdfEmbedded>
+    </fontFamily>
+
+</fontFamilies>

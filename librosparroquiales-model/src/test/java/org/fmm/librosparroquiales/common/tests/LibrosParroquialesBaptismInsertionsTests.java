@@ -18,7 +18,7 @@ import org.fmm.librosparroquiales.common.repository.BaptismRequestRepository;
 import org.fmm.librosparroquiales.common.repository.BaptismalCandidateRepository;
 import org.fmm.librosparroquiales.common.repository.PersonRepository;
 import org.fmm.librosparroquiales.common.repository.RelativeRepository;
-import org.fmm.librosparroquiales.common.testconfig.LibrosParroquialesCommonTestConfiguration;
+import org.fmm.librosparroquiales.common.testconfig.LibrosParroquialesCommonEntityTestConfiguration;
 import org.fmm.librosparroquiales.common.util.enums.GenderEnum;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ import org.springframework.test.context.ContextConfiguration;
 // No reemplaces la base de datos real por una embebida.
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 //@Import(CommunityMgmtCommonTestConfiguration.class)
-@ContextConfiguration(classes = LibrosParroquialesCommonTestConfiguration.class)
+@ContextConfiguration(classes = LibrosParroquialesCommonEntityTestConfiguration.class)
 class LibrosParroquialesBaptismInsertionsTests {
 
     @Autowired

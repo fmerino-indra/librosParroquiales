@@ -1,5 +1,11 @@
 package org.fmm.librosparroquiales.javafx.controller;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.fmm.librosparroquiales.common.model.BaptismRequest;
 import org.fmm.librosparroquiales.common.service.BaptismRequestService;
 import org.fmm.librosparroquiales.javafx.Launcher;
@@ -7,10 +13,12 @@ import org.springframework.data.domain.Page;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -29,7 +37,9 @@ public class DashboardController {
     private Button btnBuscar;
     @FXML
     private Button btnModificar; // El nuevo botón del FXML
-
+    @FXML
+    private Button btnCertificate;
+    
     @FXML
     private TableView<BaptismRequest> tablaBautismos;
 
@@ -47,10 +57,6 @@ public class DashboardController {
 
     @FXML
     private TableColumn<BaptismRequest, String> colEstado;
-
-    // Aquí irá tu servicio inyectado por Spring más adelante:
-    // private final BaptismService baptismService;
-    // public DashboardController(BaptismService baptismService) { ... }
 
     private final ObservableList<BaptismRequest> listaDatos = FXCollections.observableArrayList();
 
@@ -72,15 +78,23 @@ public class DashboardController {
         // ESCUCHADOR DE SELECCIÓN: Activa o desactiva el botón Modificar
         tablaBautismos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                btnModificar.setDisable(false);
+            	selectedState();
             } else {
-                btnModificar.setDisable(true);
+            	notSelectedState();
             }
-        });        
+        });
+        
         //listaDatos.add(new BaptismRequestMock("24/05/2026", "Martín García López", "Carlos y Elena", "Libro 42, Folio 12", "Registrado"));
         //listaDatos.add(new BaptismRequestMock("26/05/2026", "Sofía Rodríguez Gómez", "Luis y Carmen", "---", "Pendiente"));
 
         tablaBautismos.setItems(listaDatos);
+        
+        tablaBautismos.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2 && tablaBautismos.getSelectionModel().getSelectedItem() != null) {
+            	irAModificar(null);
+            }
+        });
+        ejecutarBusqueda(null);
     }
 
     @FXML
@@ -117,31 +131,87 @@ public class DashboardController {
             e.printStackTrace();
         }
     }
-    // =========================================================================
-    // CLASE POJO TEMPORAL (MOCK)
-    // Borra esta clase interna en cuanto uses tu entidad real BaptismRequest
-    // =========================================================================
-    /*
-    public static class BaptismRequestMock {
-        private final String fechaSolicitud;
-        private final String bautizado;
-        private final String padres;
-        private final String registro;
-        private final String estado;
+    
+    @FXML
+    private void handleImprimirCertificado() {
+        // 1. Obtener la partida seleccionada de la lista del dashboard
 
-        public BaptismRequestMock(String fecha, String bautizado, String padres, String registro, String estado) {
-            this.fechaSolicitud = fecha;
-            this.bautizado = bautizado;
-            this.padres = padres;
-            this.registro = registro;
-            this.estado = estado;
+        BaptismRequest partidaSeleccionada = tablaBautismos.getSelectionModel().getSelectedItem();
+
+        if (partidaSeleccionada == null) {
+            mostrarAlerta("Atención", "Selección requerida", "Por favor, selecciona una partida de la lista para imprimir.");
+            return;
         }
 
-        public String getFechaSolicitud() { return fechaSolicitud; }
-        public String getBautizado() { return bautizado; }
-        public String getPadres() { return padres; }
-        public String getRegistro() { return registro; }
-        public String getEstado() { return estado; }
+        // Deshabilitar botón para evitar doble clic accidental
+        btnCertificate.setDisable(true);
+
+        // 2. Ejecutar la generación en segundo plano (Task) para no congelar el Dashboard
+        Task<File> jasperTask = new Task<>() {
+            @Override
+            protected File call() throws Exception {
+                Map<String, Object> parametros = new HashMap<>();
+                parametros.put("ID_PARTIDA", partidaSeleccionada.getId()); 
+
+                // Generamos los bytes del PDF usando el servicio que ya tenías
+                byte[] pdfBytes = baptismRequestService.exportToPdf("/reports/partida_bautismo.jrxml", parametros, partidaSeleccionada);
+
+                // Almacenamiento en archivo temporal
+                File tempPdf = File.createTempFile("certificado_bautismo_" + partidaSeleccionada.getId() + "_", ".pdf");
+                try (FileOutputStream fos = new FileOutputStream(tempPdf)) {
+                    fos.write(pdfBytes);
+                }
+                return tempPdf;
+            }
+        };
+
+        // Si la generación termina con éxito
+        jasperTask.setOnSucceeded(event -> {
+            btnCertificate.setDisable(false);
+            File pdfFile = jasperTask.getValue();
+            try {
+                if (Desktop.isDesktopSupported()) {
+                    Desktop.getDesktop().open(pdfFile); // Abre el visor de PDF del sistema
+                }
+            } catch (Exception e) {
+                mostrarAlerta("Error", "Error al abrir", "No se pudo abrir el lector de PDF.");
+            }
+        });
+
+        // Si falla (error en la query de Jasper, base de datos abajo, etc.)
+        jasperTask.setOnFailed(event -> {
+            btnCertificate.setDisable(false);
+            Throwable e = jasperTask.getException();
+            e.printStackTrace();
+            mostrarAlerta("Error", "Error en Reporte", "No se pudo generar el certificado: " + e.getMessage());
+        });
+
+        // Arrancar el hilo
+        Thread thread = new Thread(jasperTask);
+        thread.setDaemon(true);
+        thread.start();
     }
-    */
+
+    private void mostrarAlerta(String titulo, String cabecera, String contenido) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(cabecera);
+        alert.setContentText(contenido);
+        alert.showAndWait();
+    }    
+    @FXML
+    void baptismCertificate(ActionEvent event) {
+    	
+    }
+    private void selectedState() {
+    	setSelectedState(true);
+    }
+    private void notSelectedState() {
+    	setSelectedState(false);
+    }
+    
+    private void setSelectedState(boolean selected) {
+        btnModificar.setDisable(!selected);
+    	btnCertificate.setDisable(!selected);
+    }
 }

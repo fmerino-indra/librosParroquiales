@@ -33,6 +33,11 @@ fx:controller="org.fmm.librosparroquiales.javafx.controller.DashboardController"
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
+            <Button fx:id="btnCertificate" disable="true" mnemonicParsing="false" onAction="#baptismCertificate" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-cursor: hand;" text="Certificate">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
          </children>
          <padding>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
@@ -42,7 +47,7 @@ fx:controller="org.fmm.librosparroquiales.javafx.controller.DashboardController"
       
       <TableView fx:id="tablaBautismos" VBox.vgrow="ALWAYS" style="-fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
         <columns>
-          <TableColumn fx:id="colFecha" prefWidth="120.0" text="Fecha Solicitud" />
+          <TableColumn fx:id="colFecha" prefWidth="120.0" text="Fecha Bautismo" />
           <TableColumn fx:id="colBautizado" prefWidth="250.0" text="Bautizado" />
           <TableColumn fx:id="colPadres" prefWidth="250.0" text="Padres" />
           <TableColumn fx:id="colRegistro" prefWidth="140.0" text="Libro / Folio / Nº" />

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import java.lang.String?>
+<VBox prefHeight="50.0" prefWidth="350.0" 
+      stylesheets="@gender.css" 
+      xmlns="http://javafx.com" 
+      xmlns:fx="http://javafx.com" 
+      fx:controller="org.fmm.librosparroquiales.javafx.controller.gender.GenderFragmentController">
+    <Label fx:id="labelSexo" text="Sexo:"/>
+	<HBox alignment="CENTER" >
+	   <children>
+	      
+	      <!-- Grupo de selección mutua -->
+	      <fx:define>
+	         <ToggleGroup fx:id="sexoGroup" />
+	      </fx:define>
+	
+	      <!-- Botón Varón -->
+	      <ToggleButton fx:id="btnVaron" prefWidth="100.0" text="&#x2642; Varón" toggleGroup="$sexoGroup">
+	         <styleClass>
+	            <String fx:value="left-pill" />
+	         </styleClass>
+	      </ToggleButton>
+	
+	      <!-- Botón Mujer -->
+	      <ToggleButton fx:id="btnMujer" prefWidth="100.0" text="&#x2640; Mujer" toggleGroup="$sexoGroup">
+	         <styleClass>
+	            <String fx:value="right-pill" />
+	         </styleClass>
+	      </ToggleButton>
+	      
+	   </children>
+	</HBox>
+</VBox>

@@ -1,0 +1,38 @@
+/* Estilos base de los botones */
+.left-pill, .right-pill {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+    -fx-graphic-text-gap: 8px; /* Espacio entre el SVG y el texto */
+    -fx-cursor: hand;
+}
+
+.left-pill {
+    -fx-background-radius: 20 0 0 20;
+    -fx-border-radius: 20 0 0 20;
+    -fx-border-width: 1 0 1 1; /* Elimina borde derecho */
+}
+
+.right-pill {
+    -fx-background-radius: 0 20 20 0;
+    -fx-border-radius: 0 20 20 0;
+    -fx-border-width: 1 1 1 1;
+}
+
+/* Color por defecto de los iconos SVG */
+.svg-icon {
+    -fx-fill: #666666;
+}
+
+/* Estado Seleccionado (Aplica a ambos botones) */
+.left-pill:selected, .right-pill:selected {
+    -fx-background-color: #0078d7;
+    -fx-border-color: #0078d7;
+    -fx-text-fill: #ffffff;
+}
+
+/* Cambia el color del SVG a blanco cuando el botón está seleccionado */
+.left-pill:selected .svg-icon, .right-pill:selected .svg-icon {
+    -fx-fill: #ffffff;
+}

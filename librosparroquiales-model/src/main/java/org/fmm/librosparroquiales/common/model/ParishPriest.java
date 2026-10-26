@@ -89,4 +89,16 @@ public class ParishPriest implements Serializable {
 	public void setPersonData(Person personData) {
 		this.personData = personData;
 	}
+	
+	public void enable() {
+		this.setActive(true);
+		this.setEndDate(null);
+		if (this.getInitDate() == null)
+			this.setInitDate(LocalDate.now());
+	}
+	
+	public void disable() {
+		this.setActive(false);
+		this.setEndDate(LocalDate.now());
+	}
 }

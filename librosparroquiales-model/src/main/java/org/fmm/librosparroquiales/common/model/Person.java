@@ -20,6 +20,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Transient;
 
 
 /**
@@ -173,4 +174,11 @@ public class Person extends AbstractPerson implements Serializable {
 	public void setMobileNumbers(Set<MobileNumber> mobileNumbers) {
 		this.mobileNumbers = mobileNumbers;
 	}
+	
+	@Transient
+	public String getFullName() {
+		return String.format("%s %s %s", getName(), getSurname1(), getSurname2());
+	}
+	
+
 }

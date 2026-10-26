@@ -1,6 +1,7 @@
 package org.fmm.librosparroquiales.common.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -11,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Transient;
 
 
 /**
@@ -37,6 +39,20 @@ public class BaptismalCandidate implements Serializable {
 	private Boolean active;
 	@Column
 	private String birthLocation;
+	
+	
+	public BaptismalCandidate() {
+		super();
+		this.personData = new Person();
+		this.address = new Address();
+	}
+
+	
+	public BaptismalCandidate(Person personData, Address address) {
+		super();
+		this.personData = personData;
+		this.address = address;
+	}
 	
 	public boolean isActive() {
 		return active;
@@ -71,4 +87,10 @@ public class BaptismalCandidate implements Serializable {
 	public void setBirthLocation(String birthLocation) {
 		this.birthLocation = birthLocation;
 	}
+
+	@Transient
+	public LocalDate getBirthday() {
+		return personData!=null?personData.getBirthday():null;
+	}
+
 }

@@ -13,7 +13,7 @@ import jakarta.annotation.PostConstruct;
 @EntityScan(basePackages = {"org.fmm.librosparroquiales.common.model","org.fmm.oauth2.common.model.model"})
 @EnableJpaRepositories(basePackages = {"org.fmm.librosparroquiales.common.repository","org.fmm.oauth2.common.model.repository"})
 @PropertySource(value="classpath:lib-test-application.yaml", factory = YamlPropertySourceFactory.class)
-public class LibrosParroquialesCommonTestConfiguration {
+public class LibrosParroquialesCommonEntityTestConfiguration {
 	@PostConstruct
 	public void init() {
 		System.out.println("TestPropertiesConfig ha sido cargado por Spring");

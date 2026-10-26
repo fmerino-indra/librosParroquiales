@@ -43,6 +43,25 @@ public class Parish implements Serializable {
 	@OneToMany(mappedBy = "parish")
 	private List<ParishPriest> parishPriestList = new ArrayList<>();
 
+	public void addParishPriest(ParishPriest parishPriest) {
+		List<ParishPriest> parishPriestList = getPrivatelyParishPriestList();
+		ParishPriest currentPriest = null;
+		if (parishPriestList.size() > 0) {
+			currentPriest= parishPriestList.get(parishPriestList.size()-1);
+			currentPriest.disable();
+		}
+		
+		parishPriest.enable();
+		parishPriestList.add(parishPriest);
+		parishPriest.setParish(this);
+	}
+	
+	private List<ParishPriest> getPrivatelyParishPriestList() {
+		if (this.parishPriestList == null)
+			parishPriestList = new ArrayList<>();
+		return parishPriestList;
+	}
+	
 	public ParishPriest getParishPriestActive() {
 		return parishPriestList.stream()
 				.filter(ParishPriest::isActive)

@@ -2,7 +2,7 @@ package org.fmm.librosparroquiales.common.tests;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.fmm.librosparroquiales.common.testconfig.LibrosParroquialesCommonTestConfiguration;
+import org.fmm.librosparroquiales.common.testconfig.LibrosParroquialesCommonEntityTestConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -13,7 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 @Rollback(false)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@ContextConfiguration(classes = LibrosParroquialesCommonTestConfiguration.class)
+@ContextConfiguration(classes = LibrosParroquialesCommonEntityTestConfiguration.class)
 class LibrosParroquialesConfigTests {
 
     @Autowired

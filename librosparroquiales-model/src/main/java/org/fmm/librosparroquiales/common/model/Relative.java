@@ -29,7 +29,8 @@ public class Relative {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@OneToOne(cascade = CascadeType.ALL)
+//	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinColumn(name = "person_data")
 	private Person personData;
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -50,8 +51,7 @@ public class Relative {
 
 	@Transient
 	public String getFullName() {
-	//	return getPersonData().getName() + " " + getPersonData().getSurname1() + " " + getPersonData().getSurname2();
-		return String.format("%s %s %s", getPersonData().getName(), getPersonData().getSurname1(), getPersonData().getSurname2());
+		return getPersonData().getFullName();
 	}
 	
 	

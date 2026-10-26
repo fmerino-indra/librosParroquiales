@@ -41,4 +41,10 @@ public interface BaptismRequestRepository extends JpaRepository<BaptismRequest, 
     		@Param("from") LocalDate from,
     		@Param("to") LocalDate to, 
     		Pageable pageRequest);
+
+    @Query("SELECT br DISTINCT FROM BaptismRequest br"
+            + " LEFT JOIN FETCH br.candidate c"
+            + " LEFT JOIN FETCH c.personData pD "
+            + " WHERE (:id = br.id)")
+    BaptismRequest findBaptismById(@Param("id") Integer id);
 }

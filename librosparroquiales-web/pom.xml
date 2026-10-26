@@ -37,6 +37,12 @@
             <version>21</version>
         </dependency>        
         
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.21.3</version>
+        </dependency>        
+        
         <!-- Source: https://mvnrepository.com/artifact/org.openjfx/javafx -->
         <dependency>
             <groupId>org.openjfx</groupId>
